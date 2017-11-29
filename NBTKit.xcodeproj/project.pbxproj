@@ -13,12 +13,10 @@
 		28353F12184A755B00C6A091 /* MCRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 28353F10184A755B00C6A091 /* MCRegion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28353F13184A755B00C6A091 /* MCRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 28353F11184A755B00C6A091 /* MCRegion.m */; };
 		28B72B2C184E0297001AC8A5 /* NBTKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED82D118491A6F00B08280 /* NBTKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		28ED82CF18491A6F00B08280 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28ED82CD18491A6F00B08280 /* InfoPlist.strings */; };
 		28ED82D318491A6F00B08280 /* NBTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82D218491A6F00B08280 /* NBTKit.m */; };
 		28ED82DA18491A6F00B08280 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82D918491A6F00B08280 /* XCTest.framework */; };
 		28ED82DB18491A6F00B08280 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82C418491A6F00B08280 /* Cocoa.framework */; };
 		28ED82DE18491A6F00B08280 /* NBTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82C118491A6F00B08280 /* NBTKit.framework */; };
-		28ED82E418491A6F00B08280 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28ED82E218491A6F00B08280 /* InfoPlist.strings */; };
 		28ED82E618491A6F00B08280 /* NBTKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82E518491A6F00B08280 /* NBTKitTests.m */; };
 		28ED830918491F6900B08280 /* NBTNumbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED830718491F6900B08280 /* NBTNumbers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28ED830A18491F6900B08280 /* NBTNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED830818491F6900B08280 /* NBTNumbers.m */; };
@@ -29,6 +27,8 @@
 		28ED831918496ABB00B08280 /* NBTWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED831718496ABB00B08280 /* NBTWriter.m */; };
 		28F5BB78184B430400BA9A69 /* r.0.0.mca in Resources */ = {isa = PBXBuildFile; fileRef = 28F5BB77184B430400BA9A69 /* r.0.0.mca */; };
 		C94270581FCEC5AC00764F74 /* NBTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C942704F1FCEC5AB00764F74 /* NBTKit.framework */; };
+		C94270681FCEC86E00764F74 /* Umbrella-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = C94270671FCEC86E00764F74 /* Umbrella-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C94270691FCEC86E00764F74 /* Umbrella-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = C94270671FCEC86E00764F74 /* Umbrella-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,15 +60,10 @@
 		28ED82C718491A6F00B08280 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28ED82C818491A6F00B08280 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		28ED82C918491A6F00B08280 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		28ED82CC18491A6F00B08280 /* NBTKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NBTKit-Info.plist"; sourceTree = "<group>"; };
-		28ED82CE18491A6F00B08280 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		28ED82D018491A6F00B08280 /* NBTKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NBTKit-Prefix.pch"; sourceTree = "<group>"; };
 		28ED82D118491A6F00B08280 /* NBTKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBTKit.h; sourceTree = "<group>"; };
 		28ED82D218491A6F00B08280 /* NBTKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTKit.m; sourceTree = "<group>"; };
 		28ED82D818491A6F00B08280 /* NBTKit Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NBTKit Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28ED82D918491A6F00B08280 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		28ED82E118491A6F00B08280 /* NBTKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NBTKitTests-Info.plist"; sourceTree = "<group>"; };
-		28ED82E318491A6F00B08280 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		28ED82E518491A6F00B08280 /* NBTKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTKitTests.m; sourceTree = "<group>"; };
 		28ED830718491F6900B08280 /* NBTNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTNumbers.h; sourceTree = "<group>"; };
 		28ED830818491F6900B08280 /* NBTNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTNumbers.m; sourceTree = "<group>"; };
@@ -88,6 +83,7 @@
 		C94270491FCEC10C00764F74 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		C942704F1FCEC5AB00764F74 /* NBTKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBTKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94270571FCEC5AB00764F74 /* NBTKit Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NBTKit Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C94270671FCEC86E00764F74 /* Umbrella-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Umbrella-Header.h"; path = "NBTKit/Framework/Umbrella-Header.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,21 +179,11 @@
 				28ED830818491F6900B08280 /* NBTNumbers.m */,
 				28353F031849DD9B00C6A091 /* NBTIntArray.h */,
 				28353F041849DD9B00C6A091 /* NBTIntArray.m */,
-				28ED82CB18491A6F00B08280 /* Supporting Files */,
 				28353F10184A755B00C6A091 /* MCRegion.h */,
 				28353F11184A755B00C6A091 /* MCRegion.m */,
+				C94270661FCEC85500764F74 /* Framework */,
 			);
 			path = NBTKit;
-			sourceTree = "<group>";
-		};
-		28ED82CB18491A6F00B08280 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				28ED82CC18491A6F00B08280 /* NBTKit-Info.plist */,
-				28ED82CD18491A6F00B08280 /* InfoPlist.strings */,
-				28ED82D018491A6F00B08280 /* NBTKit-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		28ED82DF18491A6F00B08280 /* NBTKitTests */ = {
@@ -207,18 +193,8 @@
 				28F5BB77184B430400BA9A69 /* r.0.0.mca */,
 				28353F0E184A400500C6A091 /* bigtest.nbt */,
 				28ED8314184964B900B08280 /* bigtest_uncompressed.nbt */,
-				28ED82E018491A6F00B08280 /* Supporting Files */,
 			);
 			path = NBTKitTests;
-			sourceTree = "<group>";
-		};
-		28ED82E018491A6F00B08280 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				28ED82E118491A6F00B08280 /* NBTKitTests-Info.plist */,
-				28ED82E218491A6F00B08280 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C94270421FCEC10C00764F74 /* Configuration */ = {
@@ -235,6 +211,14 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		C94270661FCEC85500764F74 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				C94270671FCEC86E00764F74 /* Umbrella-Header.h */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -246,6 +230,7 @@
 				28ED830918491F6900B08280 /* NBTNumbers.h in Headers */,
 				28353F051849DD9B00C6A091 /* NBTIntArray.h in Headers */,
 				28353F12184A755B00C6A091 /* MCRegion.h in Headers */,
+				C94270691FCEC86E00764F74 /* Umbrella-Header.h in Headers */,
 				28ED831818496ABB00B08280 /* NBTWriter.h in Headers */,
 				28ED8311184930EB00B08280 /* NBTReader.h in Headers */,
 			);
@@ -255,6 +240,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C94270681FCEC86E00764F74 /* Umbrella-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +363,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28ED82CF18491A6F00B08280 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +371,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28353F0F184A400500C6A091 /* bigtest.nbt in Resources */,
-				28ED82E418491A6F00B08280 /* InfoPlist.strings in Resources */,
 				28F5BB78184B430400BA9A69 /* r.0.0.mca in Resources */,
 				28ED8315184964B900B08280 /* bigtest_uncompressed.nbt in Resources */,
 			);
@@ -458,25 +442,6 @@
 			targetProxy = C94270591FCEC5AC00764F74 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		28ED82CD18491A6F00B08280 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				28ED82CE18491A6F00B08280 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		28ED82E218491A6F00B08280 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				28ED82E318491A6F00B08280 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		28ED82E718491A6F00B08280 /* Debug */ = {
