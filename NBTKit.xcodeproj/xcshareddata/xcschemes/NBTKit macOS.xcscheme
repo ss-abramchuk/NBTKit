@@ -34,7 +34,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "28ED82D718491A6F00B08280"
-               BuildableName = "NBTKit Tests macOS.xctest"
+               BuildableName = "NBTKitTests.xctest"
                BlueprintName = "NBTKit Tests macOS"
                ReferencedContainer = "container:NBTKit.xcodeproj">
             </BuildableReference>
