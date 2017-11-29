@@ -19,7 +19,7 @@
 		28ED82D318491A6F00B08280 /* NBTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82D218491A6F00B08280 /* NBTKit.m */; };
 		28ED82DA18491A6F00B08280 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82D918491A6F00B08280 /* XCTest.framework */; };
 		28ED82DB18491A6F00B08280 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82C418491A6F00B08280 /* Cocoa.framework */; };
-		28ED82DE18491A6F00B08280 /* NBTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82C118491A6F00B08280 /* NBTKit.framework */; };
+		28ED82DE18491A6F00B08280 /* NBTKit macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82C118491A6F00B08280 /* NBTKit macOS.framework */; };
 		28ED82E418491A6F00B08280 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28ED82E218491A6F00B08280 /* InfoPlist.strings */; };
 		28ED82E618491A6F00B08280 /* NBTKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82E518491A6F00B08280 /* NBTKitTests.m */; };
 		28ED830918491F6900B08280 /* NBTNumbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED830718491F6900B08280 /* NBTNumbers.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,7 +49,7 @@
 		28353F0E184A400500C6A091 /* bigtest.nbt */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigtest.nbt; sourceTree = "<group>"; };
 		28353F10184A755B00C6A091 /* MCRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCRegion.h; sourceTree = "<group>"; };
 		28353F11184A755B00C6A091 /* MCRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRegion.m; sourceTree = "<group>"; };
-		28ED82C118491A6F00B08280 /* NBTKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBTKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28ED82C118491A6F00B08280 /* NBTKit macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "NBTKit macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28ED82C418491A6F00B08280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		28ED82C718491A6F00B08280 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28ED82C818491A6F00B08280 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -59,7 +59,7 @@
 		28ED82D018491A6F00B08280 /* NBTKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NBTKit-Prefix.pch"; sourceTree = "<group>"; };
 		28ED82D118491A6F00B08280 /* NBTKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBTKit.h; sourceTree = "<group>"; };
 		28ED82D218491A6F00B08280 /* NBTKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTKit.m; sourceTree = "<group>"; };
-		28ED82D818491A6F00B08280 /* NBTKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBTKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28ED82D818491A6F00B08280 /* NBTKit Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NBTKit Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28ED82D918491A6F00B08280 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		28ED82E118491A6F00B08280 /* NBTKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NBTKitTests-Info.plist"; sourceTree = "<group>"; };
 		28ED82E318491A6F00B08280 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28ED82DE18491A6F00B08280 /* NBTKit.framework in Frameworks */,
+				28ED82DE18491A6F00B08280 /* NBTKit macOS.framework in Frameworks */,
 				28ED82DB18491A6F00B08280 /* Cocoa.framework in Frameworks */,
 				28ED82DA18491A6F00B08280 /* XCTest.framework in Frameworks */,
 			);
@@ -119,8 +119,8 @@
 		28ED82C218491A6F00B08280 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				28ED82C118491A6F00B08280 /* NBTKit.framework */,
-				28ED82D818491A6F00B08280 /* NBTKitTests.xctest */,
+				28ED82C118491A6F00B08280 /* NBTKit macOS.framework */,
+				28ED82D818491A6F00B08280 /* NBTKit Tests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,9 +231,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		28ED82C018491A6F00B08280 /* NBTKit */ = {
+		28ED82C018491A6F00B08280 /* NBTKit macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28ED82E918491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKit" */;
+			buildConfigurationList = 28ED82E918491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKit macOS" */;
 			buildPhases = (
 				28ED82BC18491A6F00B08280 /* Sources */,
 				28ED82BD18491A6F00B08280 /* Frameworks */,
@@ -244,14 +244,14 @@
 			);
 			dependencies = (
 			);
-			name = NBTKit;
+			name = "NBTKit macOS";
 			productName = NBTKit;
-			productReference = 28ED82C118491A6F00B08280 /* NBTKit.framework */;
+			productReference = 28ED82C118491A6F00B08280 /* NBTKit macOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		28ED82D718491A6F00B08280 /* NBTKitTests */ = {
+		28ED82D718491A6F00B08280 /* NBTKit Tests macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 28ED82EC18491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKitTests" */;
+			buildConfigurationList = 28ED82EC18491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKit Tests macOS" */;
 			buildPhases = (
 				28ED82D418491A6F00B08280 /* Sources */,
 				28ED82D518491A6F00B08280 /* Frameworks */,
@@ -262,9 +262,9 @@
 			dependencies = (
 				28ED82DD18491A6F00B08280 /* PBXTargetDependency */,
 			);
-			name = NBTKitTests;
+			name = "NBTKit Tests macOS";
 			productName = NBTKitTests;
-			productReference = 28ED82D818491A6F00B08280 /* NBTKitTests.xctest */;
+			productReference = 28ED82D818491A6F00B08280 /* NBTKit Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -293,8 +293,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				28ED82C018491A6F00B08280 /* NBTKit */,
-				28ED82D718491A6F00B08280 /* NBTKitTests */,
+				28ED82C018491A6F00B08280 /* NBTKit macOS */,
+				28ED82D718491A6F00B08280 /* NBTKit Tests macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -348,7 +348,7 @@
 /* Begin PBXTargetDependency section */
 		28ED82DD18491A6F00B08280 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 28ED82C018491A6F00B08280 /* NBTKit */;
+			target = 28ED82C018491A6F00B08280 /* NBTKit macOS */;
 			targetProxy = 28ED82DC18491A6F00B08280 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -557,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28ED82E918491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKit" */ = {
+		28ED82E918491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKit macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28ED82EA18491A6F00B08280 /* Debug */,
@@ -566,7 +566,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		28ED82EC18491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKitTests" */ = {
+		28ED82EC18491A6F00B08280 /* Build configuration list for PBXNativeTarget "NBTKit Tests macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				28ED82ED18491A6F00B08280 /* Debug */,
