@@ -1,0 +1,3 @@
+framework module NBTKit {
+   umbrella header "Umbrella-Header.h"
+}
