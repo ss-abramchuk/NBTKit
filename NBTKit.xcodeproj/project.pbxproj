@@ -73,6 +73,13 @@
 		28ED831618496ABB00B08280 /* NBTWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTWriter.h; sourceTree = "<group>"; };
 		28ED831718496ABB00B08280 /* NBTWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTWriter.m; sourceTree = "<group>"; };
 		28F5BB77184B430400BA9A69 /* r.0.0.mca */ = {isa = PBXFileReference; lastKnownFileType = file; path = r.0.0.mca; sourceTree = "<group>"; };
+		C94270431FCEC10C00764F74 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		C94270441FCEC10C00764F74 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		C94270451FCEC10C00764F74 /* Info-Framework.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Framework.plist"; sourceTree = "<group>"; };
+		C94270461FCEC10C00764F74 /* Info-Tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Tests.plist"; sourceTree = "<group>"; };
+		C94270471FCEC10C00764F74 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		C94270481FCEC10C00764F74 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		C94270491FCEC10C00764F74 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +108,7 @@
 		28ED82B718491A6F00B08280 = {
 			isa = PBXGroup;
 			children = (
+				C94270421FCEC10C00764F74 /* Configuration */,
 				28ED82CA18491A6F00B08280 /* NBTKit */,
 				28ED82DF18491A6F00B08280 /* NBTKitTests */,
 				28ED82C318491A6F00B08280 /* Frameworks */,
@@ -188,6 +196,20 @@
 				28ED82E218491A6F00B08280 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C94270421FCEC10C00764F74 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				C94270471FCEC10C00764F74 /* Project.xcconfig */,
+				C94270441FCEC10C00764F74 /* Framework.xcconfig */,
+				C94270431FCEC10C00764F74 /* Debug.xcconfig */,
+				C94270481FCEC10C00764F74 /* Release.xcconfig */,
+				C94270491FCEC10C00764F74 /* Tests.xcconfig */,
+				C94270451FCEC10C00764F74 /* Info-Framework.plist */,
+				C94270461FCEC10C00764F74 /* Info-Tests.plist */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +379,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -376,6 +399,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -406,6 +430,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -426,6 +451,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

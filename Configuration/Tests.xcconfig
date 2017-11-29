@@ -1,0 +1,5 @@
+PRODUCT_NAME = NBTKitTests
+PRODUCT_BUNDLE_IDENTIFIER = net.namedfork.NBTKit.tests
+INFOPLIST_FILE = Configuration/Info-Tests.plist
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+ONLY_ACTIVE_ARCH = YES
