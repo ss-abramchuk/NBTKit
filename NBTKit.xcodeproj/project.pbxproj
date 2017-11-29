@@ -80,7 +80,7 @@
 		28ED82C918491A6F00B08280 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		28ED82D118491A6F00B08280 /* NBTKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBTKit.h; sourceTree = "<group>"; };
 		28ED82D218491A6F00B08280 /* NBTKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTKit.m; sourceTree = "<group>"; };
-		28ED82D818491A6F00B08280 /* NBTKit Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NBTKit Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28ED82D818491A6F00B08280 /* NBTKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBTKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28ED82D918491A6F00B08280 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		28ED82E518491A6F00B08280 /* NBTKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTKitTests.m; sourceTree = "<group>"; };
 		28ED830718491F6900B08280 /* NBTNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTNumbers.h; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		C94270481FCEC10C00764F74 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		C94270491FCEC10C00764F74 /* Tests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		C942704F1FCEC5AB00764F74 /* NBTKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBTKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C94270571FCEC5AB00764F74 /* NBTKit Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NBTKit Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C94270571FCEC5AB00764F74 /* NBTKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBTKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94270671FCEC86E00764F74 /* Umbrella-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Umbrella-Header.h"; path = "NBTKit/Framework/Umbrella-Header.h"; sourceTree = SOURCE_ROOT; };
 		C94270701FCEC98800764F74 /* redstone-castlegate.schematic */ = {isa = PBXFileReference; lastKnownFileType = file; path = "redstone-castlegate.schematic"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,9 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				28ED82C118491A6F00B08280 /* NBTKit.framework */,
-				28ED82D818491A6F00B08280 /* NBTKit Tests macOS.xctest */,
+				28ED82D818491A6F00B08280 /* NBTKitTests.xctest */,
 				C942704F1FCEC5AB00764F74 /* NBTKit.framework */,
-				C94270571FCEC5AB00764F74 /* NBTKit Tests iOS.xctest */,
+				C94270571FCEC5AB00764F74 /* NBTKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 			);
 			name = "NBTKit Tests macOS";
 			productName = NBTKitTests;
-			productReference = 28ED82D818491A6F00B08280 /* NBTKit Tests macOS.xctest */;
+			productReference = 28ED82D818491A6F00B08280 /* NBTKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C942704E1FCEC5AB00764F74 /* NBTKit iOS */ = {
@@ -358,7 +358,7 @@
 			);
 			name = "NBTKit Tests iOS";
 			productName = "NBTKit iOSTests";
-			productReference = C94270571FCEC5AB00764F74 /* NBTKit Tests iOS.xctest */;
+			productReference = C94270571FCEC5AB00764F74 /* NBTKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -633,10 +633,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -649,10 +647,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -728,12 +724,9 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "NBTKit iOSTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "net.namedfork.NBTKit-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -756,12 +749,9 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "NBTKit iOSTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "net.namedfork.NBTKit-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
