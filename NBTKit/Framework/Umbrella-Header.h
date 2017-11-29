@@ -15,3 +15,7 @@ FOUNDATION_EXPORT double NBTKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char NBTKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <NBTKit/PublicHeader.h>
+#import <NBTKit/NBTKit.h>
+#import <NBTKit/NBTNumbers.h>
+#import <NBTKit/NBTIntArray.h>
+#import <NBTKit/MCRegion.h>

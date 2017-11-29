@@ -35,6 +35,18 @@
 		C942706F1FCEC96D00764F74 /* NBTKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82E518491A6F00B08280 /* NBTKitTests.m */; };
 		C94270711FCEC98900764F74 /* redstone-castlegate.schematic in Resources */ = {isa = PBXBuildFile; fileRef = C94270701FCEC98800764F74 /* redstone-castlegate.schematic */; };
 		C94270721FCEC98900764F74 /* redstone-castlegate.schematic in Resources */ = {isa = PBXBuildFile; fileRef = C94270701FCEC98800764F74 /* redstone-castlegate.schematic */; };
+		C9A81EB81FCECD0F0015741D /* NBTKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED82D118491A6F00B08280 /* NBTKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9A81EB91FCECD160015741D /* NBTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82D218491A6F00B08280 /* NBTKit.m */; };
+		C9A81EBA1FCECD190015741D /* NBTReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED830F184930EB00B08280 /* NBTReader.h */; };
+		C9A81EBB1FCECD1D0015741D /* NBTReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED8310184930EB00B08280 /* NBTReader.m */; };
+		C9A81EBC1FCECD200015741D /* NBTWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED831618496ABB00B08280 /* NBTWriter.h */; };
+		C9A81EBD1FCECD220015741D /* NBTWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED831718496ABB00B08280 /* NBTWriter.m */; };
+		C9A81EBE1FCECD250015741D /* NBTNumbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED830718491F6900B08280 /* NBTNumbers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9A81EBF1FCECD2B0015741D /* NBTNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED830818491F6900B08280 /* NBTNumbers.m */; };
+		C9A81EC01FCECD2D0015741D /* NBTIntArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 28353F031849DD9B00C6A091 /* NBTIntArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9A81EC11FCECD320015741D /* NBTIntArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 28353F041849DD9B00C6A091 /* NBTIntArray.m */; };
+		C9A81EC21FCECD340015741D /* MCRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 28353F10184A755B00C6A091 /* MCRegion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9A81EC31FCECD390015741D /* MCRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 28353F11184A755B00C6A091 /* MCRegion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +276,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A81EBE1FCECD250015741D /* NBTNumbers.h in Headers */,
+				C9A81EC01FCECD2D0015741D /* NBTIntArray.h in Headers */,
+				C9A81EBA1FCECD190015741D /* NBTReader.h in Headers */,
+				C9A81EC21FCECD340015741D /* MCRegion.h in Headers */,
+				C9A81EB81FCECD0F0015741D /* NBTKit.h in Headers */,
+				C9A81EBC1FCECD200015741D /* NBTWriter.h in Headers */,
 				C94270681FCEC86E00764F74 /* Umbrella-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +465,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A81EB91FCECD160015741D /* NBTKit.m in Sources */,
+				C9A81EC11FCECD320015741D /* NBTIntArray.m in Sources */,
+				C9A81EBB1FCECD1D0015741D /* NBTReader.m in Sources */,
+				C9A81EBD1FCECD220015741D /* NBTWriter.m in Sources */,
+				C9A81EBF1FCECD2B0015741D /* NBTNumbers.m in Sources */,
+				C9A81EC31FCECD390015741D /* MCRegion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,12 +598,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C94270431FCEC10C00764F74 /* Debug.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NBTKit/NBTKit-Prefix.pch";
 				LD_DYLIB_INSTALL_NAME = "@loader_path/../Frameworks/$(EXECUTABLE_PATH)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -588,12 +611,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C94270481FCEC10C00764F74 /* Release.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NBTKit/NBTKit-Prefix.pch";
 				LD_DYLIB_INSTALL_NAME = "@loader_path/../Frameworks/$(EXECUTABLE_PATH)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -607,8 +629,6 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NBTKit/NBTKit-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -627,8 +647,6 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NBTKit/NBTKit-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -640,7 +658,6 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
@@ -650,14 +667,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -670,7 +686,6 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
@@ -680,13 +695,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
