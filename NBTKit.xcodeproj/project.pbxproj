@@ -29,6 +29,12 @@
 		C94270581FCEC5AC00764F74 /* NBTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C942704F1FCEC5AB00764F74 /* NBTKit.framework */; };
 		C94270681FCEC86E00764F74 /* Umbrella-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = C94270671FCEC86E00764F74 /* Umbrella-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C94270691FCEC86E00764F74 /* Umbrella-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = C94270671FCEC86E00764F74 /* Umbrella-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C942706C1FCEC96400764F74 /* r.0.0.mca in Resources */ = {isa = PBXBuildFile; fileRef = 28F5BB77184B430400BA9A69 /* r.0.0.mca */; };
+		C942706D1FCEC96700764F74 /* bigtest.nbt in Resources */ = {isa = PBXBuildFile; fileRef = 28353F0E184A400500C6A091 /* bigtest.nbt */; };
+		C942706E1FCEC96A00764F74 /* bigtest_uncompressed.nbt in Resources */ = {isa = PBXBuildFile; fileRef = 28ED8314184964B900B08280 /* bigtest_uncompressed.nbt */; };
+		C942706F1FCEC96D00764F74 /* NBTKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82E518491A6F00B08280 /* NBTKitTests.m */; };
+		C94270711FCEC98900764F74 /* redstone-castlegate.schematic in Resources */ = {isa = PBXBuildFile; fileRef = C94270701FCEC98800764F74 /* redstone-castlegate.schematic */; };
+		C94270721FCEC98900764F74 /* redstone-castlegate.schematic in Resources */ = {isa = PBXBuildFile; fileRef = C94270701FCEC98800764F74 /* redstone-castlegate.schematic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +90,7 @@
 		C942704F1FCEC5AB00764F74 /* NBTKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBTKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94270571FCEC5AB00764F74 /* NBTKit Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NBTKit Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94270671FCEC86E00764F74 /* Umbrella-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Umbrella-Header.h"; path = "NBTKit/Framework/Umbrella-Header.h"; sourceTree = SOURCE_ROOT; };
+		C94270701FCEC98800764F74 /* redstone-castlegate.schematic */ = {isa = PBXFileReference; lastKnownFileType = file; path = "redstone-castlegate.schematic"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,10 +196,8 @@
 		28ED82DF18491A6F00B08280 /* NBTKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				28ED82E518491A6F00B08280 /* NBTKitTests.m */,
-				28F5BB77184B430400BA9A69 /* r.0.0.mca */,
-				28353F0E184A400500C6A091 /* bigtest.nbt */,
-				28ED8314184964B900B08280 /* bigtest_uncompressed.nbt */,
+				C942706B1FCEC95000764F74 /* Tests */,
+				C942706A1FCEC91F00764F74 /* Resourses */,
 			);
 			path = NBTKitTests;
 			sourceTree = "<group>";
@@ -217,6 +222,25 @@
 				C94270671FCEC86E00764F74 /* Umbrella-Header.h */,
 			);
 			path = Framework;
+			sourceTree = "<group>";
+		};
+		C942706A1FCEC91F00764F74 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				28F5BB77184B430400BA9A69 /* r.0.0.mca */,
+				28353F0E184A400500C6A091 /* bigtest.nbt */,
+				28ED8314184964B900B08280 /* bigtest_uncompressed.nbt */,
+				C94270701FCEC98800764F74 /* redstone-castlegate.schematic */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		C942706B1FCEC95000764F74 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				28ED82E518491A6F00B08280 /* NBTKitTests.m */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +396,7 @@
 			files = (
 				28353F0F184A400500C6A091 /* bigtest.nbt in Resources */,
 				28F5BB78184B430400BA9A69 /* r.0.0.mca in Resources */,
+				C94270721FCEC98900764F74 /* redstone-castlegate.schematic in Resources */,
 				28ED8315184964B900B08280 /* bigtest_uncompressed.nbt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +412,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C942706C1FCEC96400764F74 /* r.0.0.mca in Resources */,
+				C942706E1FCEC96A00764F74 /* bigtest_uncompressed.nbt in Resources */,
+				C94270711FCEC98900764F74 /* redstone-castlegate.schematic in Resources */,
+				C942706D1FCEC96700764F74 /* bigtest.nbt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C942706F1FCEC96D00764F74 /* NBTKitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
