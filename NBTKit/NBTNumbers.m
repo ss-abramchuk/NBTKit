@@ -7,7 +7,7 @@
 //
 
 #import "NBTNumbers.h"
-#import "NBTKit_Private.h"
+#import "NBTKit+Private.h"
 
 #define NSNUMBER_SUBCLASS(name, ctype, initWithX, xValue) \
 @implementation name \

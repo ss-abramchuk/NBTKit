@@ -75,7 +75,7 @@
 		28ED830818491F6900B08280 /* NBTNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTNumbers.m; sourceTree = "<group>"; };
 		28ED830F184930EB00B08280 /* NBTReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTReader.h; sourceTree = "<group>"; };
 		28ED8310184930EB00B08280 /* NBTReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTReader.m; sourceTree = "<group>"; };
-		28ED83131849337C00B08280 /* NBTKit_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBTKit_Private.h; sourceTree = "<group>"; };
+		28ED83131849337C00B08280 /* NBTKit+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NBTKit+Private.h"; sourceTree = "<group>"; };
 		28ED8314184964B900B08280 /* bigtest_uncompressed.nbt */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigtest_uncompressed.nbt; sourceTree = "<group>"; };
 		28ED831618496ABB00B08280 /* NBTWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTWriter.h; sourceTree = "<group>"; };
 		28ED831718496ABB00B08280 /* NBTWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTWriter.m; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				28ED82D118491A6F00B08280 /* NBTKit.h */,
-				28ED83131849337C00B08280 /* NBTKit_Private.h */,
+				28ED83131849337C00B08280 /* NBTKit+Private.h */,
 				28ED82D218491A6F00B08280 /* NBTKit.m */,
 				28ED830F184930EB00B08280 /* NBTReader.h */,
 				28ED8310184930EB00B08280 /* NBTReader.m */,

@@ -7,7 +7,7 @@
 //
 
 #import "NBTKit.h"
-#import "NBTKit_Private.h"
+#import "NBTKit+Private.h"
 #import "NBTReader.h"
 #import "NBTWriter.h"
 #import <zlib.h>

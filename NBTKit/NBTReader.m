@@ -8,7 +8,7 @@
 
 #import "NBTReader.h"
 #import "NBTKit.h"
-#import "NBTKit_Private.h"
+#import "NBTKit+Private.h"
 #import "NBTNumbers.h"
 
 @implementation NBTReader

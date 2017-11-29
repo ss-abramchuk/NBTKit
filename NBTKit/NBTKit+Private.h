@@ -1,5 +1,5 @@
 //
-//  NBTKit_Private.h
+//  NBTKit+Private.h
 //  NBTKit
 //
 //  Created by Jesús A. Álvarez on 29/11/2013.
