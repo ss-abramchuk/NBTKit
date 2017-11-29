@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "28ED82C018491A6F00B08280"
+               BlueprintIdentifier = "C942704E1FCEC5AB00764F74"
                BuildableName = "NBTKit.framework"
-               BlueprintName = "NBTKit macOS"
+               BlueprintName = "NBTKit iOS"
                ReferencedContainer = "container:NBTKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "28ED82D718491A6F00B08280"
-               BuildableName = "NBTKit Tests macOS.xctest"
-               BlueprintName = "NBTKit Tests macOS"
+               BlueprintIdentifier = "C94270561FCEC5AB00764F74"
+               BuildableName = "NBTKit Tests iOS.xctest"
+               BlueprintName = "NBTKit Tests iOS"
                ReferencedContainer = "container:NBTKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28ED82C018491A6F00B08280"
+            BlueprintIdentifier = "C942704E1FCEC5AB00764F74"
             BuildableName = "NBTKit.framework"
-            BlueprintName = "NBTKit macOS"
+            BlueprintName = "NBTKit iOS"
             ReferencedContainer = "container:NBTKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,9 +66,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28ED82C018491A6F00B08280"
+            BlueprintIdentifier = "C942704E1FCEC5AB00764F74"
             BuildableName = "NBTKit.framework"
-            BlueprintName = "NBTKit macOS"
+            BlueprintName = "NBTKit iOS"
             ReferencedContainer = "container:NBTKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,9 +84,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28ED82C018491A6F00B08280"
+            BlueprintIdentifier = "C942704E1FCEC5AB00764F74"
             BuildableName = "NBTKit.framework"
-            BlueprintName = "NBTKit macOS"
+            BlueprintName = "NBTKit iOS"
             ReferencedContainer = "container:NBTKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
