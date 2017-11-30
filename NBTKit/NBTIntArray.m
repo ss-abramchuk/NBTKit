@@ -8,6 +8,11 @@
 
 #import "NBTIntArray.h"
 
+#ifndef PAGE_SIZE
+#import <unistd.h>
+#define PAGE_SIZE sysconf(_SC_PAGESIZE)
+#endif
+
 @implementation NBTIntArray
 {
     int32_t *storage;
