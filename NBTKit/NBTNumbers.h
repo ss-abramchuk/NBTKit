@@ -21,6 +21,7 @@
  * Created with NBTByte(value) macro
  */
 @interface NBTByte : NSNumber
+- (instancetype)initWithChar:(char)value;
 @end
 
 /** @class NBTShort
@@ -28,6 +29,7 @@
  * Created with NBTShort(value) macro
  */
 @interface NBTShort : NSNumber
+- (instancetype)initWithShort:(int16_t)value;
 @end
 
 /** @class NBTInt
@@ -35,6 +37,7 @@
  * Created with NBTInt(value) macro
  */
 @interface NBTInt : NSNumber
+- (instancetype)initWithInt:(int32_t)value;
 @end
 
 /** @class NBTLong
@@ -42,6 +45,7 @@
  * Created with NBTLong(value) macro
  */
 @interface NBTLong : NSNumber
+- (instancetype)initWithLongLong:(int64_t)value;
 @end
 
 /** @class NBTFloat
@@ -49,6 +53,7 @@
  * Created with NBTFloat(value) macro
  */
 @interface NBTFloat : NSNumber
+- (instancetype)initWithFloat:(float)value;
 @end
 
 /** @class NBTDouble
@@ -56,4 +61,5 @@
  * Created with NBTDouble(value) macro
  */
 @interface NBTDouble : NSNumber
+- (instancetype)initWithDouble:(double)value;
 @end
