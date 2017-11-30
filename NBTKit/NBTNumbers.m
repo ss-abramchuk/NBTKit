@@ -9,12 +9,12 @@
 #import "NBTNumbers.h"
 #import "NBTKit+Private.h"
 
-#define NSNUMBER_SUBCLASS(name, ctype, initWithX, xValue) \
+#define NSNUMBER_SUBCLASS(name, ctype, instanceWithX, xValue) \
 @implementation name { \
     ctype _value; \
 } \
-- (instancetype)initWithX:(ctype)value { \
-    return [self initWithBytes:&value objCType:@encode(ctype)]; \
++ (instancetype)instanceWithX:(ctype)value { \
+    return [[name alloc] initWithBytes:&value objCType:@encode(ctype)]; \
 } \
 - (ctype)xValue { return _value; } \
 - (instancetype)initWithBytes:(const void *)value objCType:(const char *)type { \
@@ -31,9 +31,9 @@
 - (const char *)objCType NS_RETURNS_INNER_POINTER { return @encode(ctype); } \
 @end
 
-NSNUMBER_SUBCLASS(NBTByte, char, initWithChar, charValue)
-NSNUMBER_SUBCLASS(NBTShort, int16_t, initWithShort, shortValue)
-NSNUMBER_SUBCLASS(NBTInt, int32_t, initWithInt, intValue)
-NSNUMBER_SUBCLASS(NBTLong, int64_t, initWithLongLong, longLongValue)
-NSNUMBER_SUBCLASS(NBTFloat, float, initWithFloat, floatValue)
-NSNUMBER_SUBCLASS(NBTDouble, double, initWithDouble, doubleValue)
+NSNUMBER_SUBCLASS(NBTByte, char, instanceWithChar, charValue)
+NSNUMBER_SUBCLASS(NBTShort, int16_t, instanceWithShort, shortValue)
+NSNUMBER_SUBCLASS(NBTInt, int32_t, instanceWithInt, intValue)
+NSNUMBER_SUBCLASS(NBTLong, int64_t, instanceWithLong, longLongValue)
+NSNUMBER_SUBCLASS(NBTFloat, float, instanceWithFloat, floatValue)
+NSNUMBER_SUBCLASS(NBTDouble, double, instanceWithDouble, doubleValue)
