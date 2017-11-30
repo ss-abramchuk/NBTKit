@@ -1,6 +1,10 @@
-# Xcode
-.DS_Store
-*/build/*
+## Xcode
+
+## Build generated
+[bB]uild/
+DerivedData/
+
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -9,13 +13,39 @@
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
-profile
-*.moved-aside
-DerivedData
-.idea/
-*.hmap
-*.xccheckout
+xcuserdata/
 
-#CocoaPods
-Pods
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## Swift Package Manager
+# Packages/
+# Package.pins
+# Package.resolved
+.build/
+
+## CocoaPods
+# Pods/
+
+## Carthage
+Carthage/**/Carthage/Checkouts
+Carthage/**/Build
+
+## fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+

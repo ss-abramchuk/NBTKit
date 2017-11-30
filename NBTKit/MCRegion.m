@@ -16,7 +16,7 @@
 
 - (instancetype)initWithFileAtPath:(NSString *)path
 {
-    int fd = open(path.fileSystemRepresentation, O_CREAT | O_RDWR);
+    int fd = open(path.fileSystemRepresentation, O_CREAT | O_RDWR, S_IRWXU);
     if (fd < 0) return nil;
     NSFileHandle *fh = [[NSFileHandle alloc] initWithFileDescriptor:fd closeOnDealloc:YES];
     // if the file exists, it must be a valid mcr

@@ -7,7 +7,7 @@
 //
 
 #import "NBTKit.h"
-#import "NBTKit_Private.h"
+#import "NBTKit+Private.h"
 #import "NBTReader.h"
 #import "NBTWriter.h"
 #import <zlib.h>
@@ -80,7 +80,7 @@ NSString *NBTKitErrorDomain = @"NBTKitErrorDomain";
         return [self NBTWithData:nbtData name:name options:opt &~ NBTCompressed error:error];
     zlibError:
         inflateEnd(&zstream);
-        if (error) *error = [NSError errorWithDomain:@"ZLib" code:zerr userInfo:@{@"message": [[NSString alloc] initWithUTF8String:zError(zerr)]}];
+        if (error) *error = [NSError errorWithDomain:@"ZLib" code:zerr userInfo:@{NSLocalizedDescriptionKey : [[NSString alloc] initWithUTF8String:zError(zerr)]}];
         return nil;
     } else {
         // read uncompressed NBT
@@ -111,7 +111,7 @@ NSString *NBTKitErrorDomain = @"NBTKitErrorDomain";
 + (NSInteger)writeNBT:(NSDictionary *)root name:(NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     if (stream == nil) {
-        if (error) *error = [NSError errorWithDomain:NBTKitErrorDomain code:NBTInvalidArgError userInfo:@{@"stream": stream}];
+        if (error) *error = [NSError errorWithDomain:NBTKitErrorDomain code:NBTInvalidArgError userInfo:@{NSLocalizedDescriptionKey : @"stream couldn't be nil"}];
         return 0;
     }
     
@@ -148,7 +148,7 @@ NSString *NBTKitErrorDomain = @"NBTKitErrorDomain";
         return bw;
     zlibError:
         deflateEnd(&zstream);
-        if (error) *error = [NSError errorWithDomain:@"ZLib" code:zerr userInfo:@{@"message": [[NSString alloc] initWithUTF8String:zError(zerr)]}];
+        if (error) *error = [NSError errorWithDomain:@"ZLib" code:zerr userInfo:@{NSLocalizedDescriptionKey : [[NSString alloc] initWithUTF8String:zError(zerr)]}];
         return 0;
     } else {
         // check types
@@ -162,9 +162,6 @@ NSString *NBTKitErrorDomain = @"NBTKitErrorDomain";
         writer.littleEndian = opt & NBTLittleEndian;
         return [writer writeRootTag:root withName:name error:error];
     }
-    
-    if (error) *error = [NSError errorWithDomain:NBTKitErrorDomain code:NBTInvalidArgError userInfo:@{@"options": @(opt)}];
-    return 0;
 }
 
 + (NBTType)NBTTypeForObject:(id)obj

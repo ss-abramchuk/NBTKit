@@ -8,7 +8,7 @@
 
 #import "NBTWriter.h"
 #import "NBTKit.h"
-#import "NBTKit_Private.h"
+#import "NBTKit+Private.h"
 
 @implementation NBTWriter
 {
