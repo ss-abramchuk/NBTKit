@@ -6,34 +6,44 @@
 //  Copyright (c) 2013 namedfork. All rights reserved.
 //
 
+#define NBTNUMBERS_M
 #import "NBTNumbers.h"
 #import "NBTKit+Private.h"
 
-#define NSNUMBER_SUBCLASS(name, ctype, instanceWithX, xValue) \
-@implementation name { \
-    ctype _value; \
-} \
-+ (instancetype)instanceWithX:(ctype)value { \
-    return [[name alloc] initWithBytes:&value objCType:@encode(ctype)]; \
-} \
+#define NSNUMBER_SUBCLASS(name, ctype, initWithX, xValue) \
+@implementation name \
+{ ctype _value; }    \
+- (instancetype)initWithX:(ctype)value { return [self initWithBytes:&value objCType:@encode(ctype)]; } \
 - (ctype)xValue { return _value; } \
 - (instancetype)initWithBytes:(const void *)value objCType:(const char *)type { \
-    if (strcmp(@encode(ctype), type)) { \
-        NSString *reason = [NSString stringWithFormat:@"%@ can only be initialized with objCType %s (not %s)", \
-                                NSStringFromClass([self class]), @encode(ctype), type]; \
-        @throw [NSException exceptionWithName:@"NBTTypeException" reason:reason userInfo:nil]; \
-    } \
-    if (self = [super init]) { _value = *(ctype*)value; } \
+    if (strcmp(@encode(ctype), type)) @throw [NSException exceptionWithName:@"NBTTypeException" reason:[NSString stringWithFormat:@"%@ can only be initialized with objCType %s (not %s)", NSStringFromClass([self class]), @encode(ctype), type] userInfo:nil]; \
+    if ((self = [super init])) {_value = *(ctype*)value;} \
     return self; } \
-+ (NSValue *)valueWithBytes:(const void *)value objCType:(const char *)type { return [[self alloc] initWithBytes:value objCType:type]; } \
++ (NSValue *)valueWithBytes:(const void *)value objCType:(const char *)type {return [[self alloc] initWithBytes:value objCType:type];} \
 + (NSValue *)value:(const void *)value withObjCType:(const char *)type { return [self valueWithBytes:value objCType:type]; } \
 - (void)getValue:(void *)value { *(ctype*)value = _value; } \
-- (const char *)objCType NS_RETURNS_INNER_POINTER { return @encode(ctype); } \
+- (const char *)objCType NS_RETURNS_INNER_POINTER { return @encode(ctype);} \
+- (NSString *)description { return [NSString stringWithFormat:@"%s(%@)", #name, [super description]];} \
+- (instancetype)initWithInteger:(NSInteger)value { return [self initWithX:(ctype)value];} \
 @end
 
-NSNUMBER_SUBCLASS(NBTByte, char, instanceWithChar, charValue)
-NSNUMBER_SUBCLASS(NBTShort, int16_t, instanceWithShort, shortValue)
-NSNUMBER_SUBCLASS(NBTInt, int32_t, instanceWithInt, intValue)
-NSNUMBER_SUBCLASS(NBTLong, int64_t, instanceWithLong, longLongValue)
-NSNUMBER_SUBCLASS(NBTFloat, float, instanceWithFloat, floatValue)
-NSNUMBER_SUBCLASS(NBTDouble, double, instanceWithDouble, doubleValue)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
+
+NSNUMBER_SUBCLASS(NBTByte, char, initWithChar, charValue)
+NSNUMBER_SUBCLASS(NBTShort, int16_t, initWithShort, shortValue)
+NSNUMBER_SUBCLASS(NBTInt, int32_t, initWithInt, intValue)
+NSNUMBER_SUBCLASS(NBTLong, int64_t, initWithLongLong, longLongValue)
+NSNUMBER_SUBCLASS(NBTFloat, float, initWithFloat, floatValue)
+NSNUMBER_SUBCLASS(NBTDouble, double, initWithDouble, doubleValue)
+
+#pragma clang diagnostic pop
+
+// This allows NBTFloat to be instantiated in swift with a float literal, eg NBTFloat(3.0)
+@implementation NBTFloat (DoubleLiteralInitializer)
+
+- (instancetype)initWithDouble:(double)value {
+    return [self initWithFloat:(float)value];
+}
+
+@end

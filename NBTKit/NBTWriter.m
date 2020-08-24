@@ -30,7 +30,7 @@
         return [self writeTag:root withName:name];
     }
     @catch (NSException *exception) {
-        if (error) *error = [NSError errorWithDomain:NBTKitErrorDomain code:NBTWriteError userInfo:@{@"exception": exception}];
+        if (error) *error = [NBTKit _errorFromException:exception];
         return 0;
     }
 }
@@ -52,38 +52,49 @@
 - (NSInteger)writeTag:(id)obj ofType:(NBTType)tag
 {
     switch (tag) {
-        case NBT_Byte:
+        case NBTTypeByte:
             return [self writeByte:[obj charValue]];
-        case NBT_Short:
+        case NBTTypeShort:
             return [self writeShort:[obj shortValue]];
-        case NBT_Int:
+        case NBTTypeInt:
             return [self writeInt:[obj intValue]];
-        case NBT_Long:
+        case NBTTypeLong:
             return [self writeLong:[obj longLongValue]];
-        case NBT_Float:
+        case NBTTypeFloat:
             return [self writeFloat:[obj floatValue]];
-        case NBT_Double:
+        case NBTTypeDouble:
             return [self writeDouble:[obj doubleValue]];
-        case NBT_Byte_Array:
+        case NBTTypeByteArray:
             return [self writeByteArray:obj];
-        case NBT_String:
+        case NBTTypeString:
             return [self writeString:obj];
-        case NBT_Int_Array:
+        case NBTTypeIntArray:
             return [self writeIntArray:obj];
-        case NBT_List:
+        case NBTTypeLongArray:
+            return [self writeLongArray:obj];
+        case NBTTypeList:
             return [self writeList:obj];
-        case NBT_Compound:
+        case NBTTypeCompound:
             return [self writeCompound:obj];
-        case NBT_End:
-        case NBT_Invalid:
+        case NBTTypeEnd:
+        case NBTTypeInvalid:
         default:
             @throw [NSException exceptionWithName:@"NBTTypeException" reason:@"Unknown tag ID" userInfo:@{@"tag":@(tag)}];
     }
 }
 
-- (void)writeError:(NSDictionary*)userInfo
+- (void)writeError
 {
-    @throw [NSException exceptionWithName:@"NBTWriteException" reason:@"Write error" userInfo:userInfo];
+    NSMutableDictionary *userInfo = @{
+        NSLocalizedFailureReasonErrorKey: @"Error writing NBT."
+    }.mutableCopy;
+    if ([stream propertyForKey:NSStreamFileCurrentOffsetKey]) {
+        userInfo[NSStreamFileCurrentOffsetKey] = [stream propertyForKey:NSStreamFileCurrentOffsetKey];
+    }
+    if (stream.streamError) {
+        userInfo[@"error"] = stream.streamError;
+    }
+    @throw [NSException exceptionWithName:@"NBTWriteException" reason:stream.streamError.description ?: @"Error writing NBT." userInfo:userInfo];
 }
 
 #pragma mark - Write basic types
@@ -91,13 +102,13 @@
 - (NSInteger)write:(NSData*)data
 {
     if (data == nil || data.length == 0) return 0;
-    if ([stream write:data.bytes maxLength:data.length] != data.length) [self writeError:nil];
+    if ([stream write:data.bytes maxLength:data.length] != data.length) [self writeError];
     return data.length;
 }
 
 - (NSInteger)writeByte:(int8_t)val
 {
-    if ([stream write:(const uint8_t*)&val maxLength:1] != 1) [self writeError:nil];
+    if ([stream write:(const uint8_t*)&val maxLength:1] != 1) [self writeError];
     return 1;
 }
 
@@ -105,7 +116,7 @@
 {
     uint8_t buf[2];
     _littleEndian ? OSWriteLittleInt16(buf, 0, val) : OSWriteBigInt16(buf, 0, val);
-    if ([stream write:buf maxLength:sizeof buf] != 2) [self writeError:nil];
+    if ([stream write:buf maxLength:sizeof buf] != 2) [self writeError];
     return 2;
 }
 
@@ -113,7 +124,7 @@
 {
     uint8_t buf[4];
     _littleEndian ? OSWriteLittleInt32(buf, 0, val) : OSWriteBigInt32(buf, 0, val);
-    if ([stream write:buf maxLength:sizeof buf] != 4) [self writeError:nil];
+    if ([stream write:buf maxLength:sizeof buf] != 4) [self writeError];
     return 4;
 }
 
@@ -121,7 +132,7 @@
 {
     uint8_t buf[8];
     _littleEndian ? OSWriteLittleInt64(buf, 0, val) : OSWriteBigInt64(buf, 0, val);
-    if ([stream write:buf maxLength:sizeof buf] != 8) [self writeError:nil];
+    if ([stream write:buf maxLength:sizeof buf] != 8) [self writeError];
     return 8;
 }
 
@@ -156,7 +167,7 @@
 
 - (NSInteger)writeList:(NSArray*)list
 {
-    NBTType tag = NBT_Byte;
+    NBTType tag = NBTTypeByte;
     NSInteger bw = 0;
     if (list.count) tag = [NBTKit NBTTypeForObject:list.firstObject];
     bw += [self writeByte:tag];
@@ -191,6 +202,22 @@
     int32_t *values = array.values;
     for (NSUInteger i=0; i < array.count; i++) {
         bw += [self writeInt:values[i]];
+    }
+    
+    return bw;
+}
+
+- (NSInteger)writeLongArray:(NBTLongArray*)array
+{
+    NSInteger bw = 0;
+    
+    // length
+    bw += [self writeInt:(int32_t)array.count];
+    
+    // values
+    int64_t *values = array.values;
+    for (NSUInteger i=0; i < array.count; i++) {
+        bw += [self writeLong:values[i]];
     }
     
     return bw;

@@ -7,11 +7,9 @@
 //
 
 #import "NBTIntArray.h"
+#import "NBTKit+Private.h"
 
-#ifndef PAGE_SIZE
-#import <unistd.h>
-#define PAGE_SIZE sysconf(_SC_PAGESIZE)
-#endif
+#include <mach/vm_page_size.h>
 
 @implementation NBTIntArray
 {
@@ -131,9 +129,7 @@
 - (void)_ensureAvailableSpaces:(NSUInteger)avail
 {
     if (capacity - length < avail) {
-        size_t new_size = (length + avail) * sizeof(int32_t);
-        // round up to page size
-        if (new_size % PAGE_SIZE) new_size += (PAGE_SIZE - (new_size % PAGE_SIZE));
+        size_t new_size = round_page((length + avail) * sizeof(int32_t));
         // embiggen the array
         storage = realloc(storage, new_size);
         capacity = new_size / sizeof(int32_t);
@@ -149,11 +145,13 @@
 - (void)addValues:(const int32_t*)values count:(NSUInteger)count
 {
     [self _ensureAvailableSpaces:count];
-    memcpy(&storage[length], values, count*sizeof(int32_t));
+    memmove(&storage[length], values, count*sizeof(int32_t));
+    length += count;
 }
 
 - (void)addIntArray:(NBTIntArray*)intArray
 {
+    [self _ensureAvailableSpaces:intArray->length];
     [self addValues:intArray->storage count:intArray->length];
 }
 
@@ -175,12 +173,20 @@
     length += count - range.length;
     
     // copy new values
-    memcpy(&storage[range.location], values, sizeof(int32_t)*count);
+    if (count > 0) {
+        memmove(&storage[range.location], values, sizeof(int32_t)*count);
+    }
 }
 
 - (void)replaceRange:(NSRange)range withIntArray:(NBTIntArray *)intArray
 {
-    [self replaceRange:range withValues:intArray->storage count:intArray->length];
+    if (intArray == nil) {
+        [self replaceRange:range withValues:NULL count:0];
+    } else {
+        NSUInteger count = intArray->length;
+        if (count > range.length) [self _ensureAvailableSpaces:count-range.length];
+        [self replaceRange:range withValues:intArray->storage count:intArray->length];
+    }
 }
 
 - (void)resetRange:(NSRange)range

@@ -36,8 +36,7 @@
         return [self readNamedTag:name];
     }
     @catch (NSException *exception) {
-        NSLog(@"Error reading NBT: %@", exception);
-        if (error && exception.userInfo[@"error"]) *error = exception.userInfo[@"error"];
+        if (error) *error = [NBTKit _errorFromException:exception];
         return nil;
     }
 }
@@ -46,7 +45,7 @@
 {
     // read tag
     uint8_t tag = [self readByte];
-    if (tag == NBT_End) return [NSNull null];
+    if (tag == NBTTypeEnd) return [NSNull null];
     
     // read name
     NSString *tagName = [self readString];
@@ -58,28 +57,30 @@
 
 - (id)readTagOfType:(NBTType)type
 {
-    if (type == NBT_Byte) {
+    if (type == NBTTypeByte) {
         return NBTByte([self readByte]);
-    } else if (type == NBT_Short) {
+    } else if (type == NBTTypeShort) {
         return NBTShort([self readShort]);
-    } else if (type == NBT_Int) {
+    } else if (type == NBTTypeInt) {
         return NBTInt([self readInt]);
-    } else if (type == NBT_Long) {
+    } else if (type == NBTTypeLong) {
         return NBTLong([self readLong]);
-    } else if (type == NBT_Float) {
+    } else if (type == NBTTypeFloat) {
         return NBTFloat([self readFloat]);
-    } else if (type == NBT_Double) {
+    } else if (type == NBTTypeDouble) {
         return NBTDouble([self readDouble]);
-    } else if (type == NBT_Byte_Array) {
+    } else if (type == NBTTypeByteArray) {
         return [self readByteArray];
-    } else if (type == NBT_String) {
+    } else if (type == NBTTypeString) {
         return [self readString];
-    } else if (type == NBT_List) {
+    } else if (type == NBTTypeList) {
         return [self readList];
-    } else if (type == NBT_Compound) {
+    } else if (type == NBTTypeCompound) {
         return [self readCompound];
-    } else if (type == NBT_Int_Array) {
+    } else if (type == NBTTypeIntArray) {
         return [self readIntArray];
+    } else if (type == NBTTypeLongArray) {
+        return [self readLongArray];
     }
     
     @throw [NSException exceptionWithName:@"NBTTypeException" reason:[NSString stringWithFormat:@"Don't know how to read tag of type %d", type] userInfo:@{@"tag": @(type)}];
@@ -87,7 +88,16 @@
 
 - (void)readError
 {
-    @throw [NSException exceptionWithName:@"NBTReadException" reason:stream.streamError.description userInfo:@{@"error": stream.streamError}];
+    NSMutableDictionary *userInfo = @{
+        NSLocalizedFailureReasonErrorKey: @"Error reading NBT."
+    }.mutableCopy;
+    if ([stream propertyForKey:NSStreamFileCurrentOffsetKey]) {
+        userInfo[NSStreamFileCurrentOffsetKey] = [stream propertyForKey:NSStreamFileCurrentOffsetKey];
+    }
+    if (stream.streamError) {
+        userInfo[@"error"] = stream.streamError;
+    }
+    @throw [NSException exceptionWithName:@"NBTReadException" reason:stream.streamError.description ?: @"Error reading NBT." userInfo:userInfo];
 }
 
 #pragma mark Basic type reading
@@ -138,6 +148,7 @@
 {
     // length
     int32_t len = [self readInt];
+    if (len < 0) [self readError];
     
     // data
     NSMutableData *data = [NSMutableData dataWithLength:len];
@@ -151,6 +162,7 @@
     // length
     int16_t len = [self readShort];
     if (len == 0) return @"";
+    if (len < 0) [self readError];
     
     // data
     uint8_t *buf = malloc(len);
@@ -166,6 +178,7 @@
     
     // length
     int32_t len = [self readInt];
+    if (len < 0) [self readError];
     
     // items
     NSMutableArray *list = [NSMutableArray arrayWithCapacity:len];
@@ -173,6 +186,7 @@
         [list addObject:[self readTagOfType:tag]];
     }
     
+    list.nbtListType = tag;
     return list;
 }
 
@@ -193,6 +207,7 @@
 - (NBTIntArray*)readIntArray
 {
     int32_t len = [self readInt];
+    if (len < 0) [self readError];
     NBTIntArray *intArray = [NBTIntArray intArrayWithCount:len];
     int32_t *values = intArray.values;
     while (len--) {
@@ -200,6 +215,19 @@
     }
     
     return intArray;
+}
+
+- (NBTLongArray*)readLongArray
+{
+    int32_t len = [self readInt];
+    if (len < 0) [self readError];
+    NBTLongArray *longArray = [NBTLongArray longArrayWithCount:len];
+    int64_t *values = longArray.values;
+    while (len--) {
+        *values++ = [self readLong];
+    }
+    
+    return longArray;
 }
 
 @end

@@ -7,13 +7,37 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "NBTNumbers.h"
 #import "NBTIntArray.h"
+#import "NBTLongArray.h"
 #import "MCRegion.h"
 
-extern NSString *NBTKitErrorDomain;
+/**
+* Represents a type of value in a NBT
+ */
+typedef NS_ENUM(int8_t, NBTType) {
+    NBTTypeInvalid = -1,
+    NBTTypeEnd,
+    NBTTypeByte,
+    NBTTypeShort,
+    NBTTypeInt,
+    NBTTypeLong,
+    NBTTypeFloat,
+    NBTTypeDouble,
+    NBTTypeByteArray,
+    NBTTypeString,
+    NBTTypeList,
+    NBTTypeCompound,
+    NBTTypeIntArray,
+    NBTTypeLongArray
+};
 
-typedef NS_ENUM(NSInteger, NBTKitError) {
+NS_ASSUME_NONNULL_BEGIN
+
+extern NSErrorDomain const NBTKitErrorDomain;
+
+typedef NS_ERROR_ENUM(NBTKitErrorDomain, NBTKitError) {
     NBTErrorGeneral = 0,
     NBTInvalidArgError,
     NBTReadError,
@@ -44,7 +68,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  *
  * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
  */
-+ (NSMutableDictionary*)NBTWithData:(NSData *)data name:(NSString **)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithData:(NSData *)data name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a mutable dictionary with the root tag from given NBT file.
@@ -58,7 +82,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  *
  * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
  */
-+ (NSMutableDictionary*)NBTWithFile:(NSString *)path name:(NSString **)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithFile:(NSString *)path name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a mutable dictionary with the root tag from given NBT file.
@@ -72,7 +96,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  *
  * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
  */
-+ (NSMutableDictionary*)NBTWithStream:(NSInputStream *)stream name:(NSString **)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithStream:(NSInputStream *)stream name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns NBT data from a NSDictionary
@@ -83,10 +107,10 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return NSData object with the written data
  */
-+ (NSData *)dataWithNBT:(NSDictionary*)base name:(NSString*)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable NSData *)dataWithNBT:(NSDictionary*)base name:(nullable NSString*)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
- * Returns NBT data from a NSDictionary
+ * Writes NBT data to a stream
  *
  * @param base Root tag.
  * @param name Name of the root tag, or nil for no name.
@@ -95,10 +119,10 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return Number of bytes written, 0 on failure
  */
-+ (NSInteger)writeNBT:(NSDictionary*)base name:(NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError **)error;
++ (NSInteger)writeNBT:(NSDictionary*)base name:(nullable NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError **)error;
 
 /**
- * Returns NBT data from a NSDictionary
+ * Writes NBT data to a file
  *
  * @param base Root tag.
  * @param name Name of the root tag, or nil for no name.
@@ -107,16 +131,47 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return Number of bytes written, 0 on failure
  */
-+ (NSInteger)writeNBT:(NSDictionary*)base name:(NSString*)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError **)error;
++ (NSInteger)writeNBT:(NSDictionary*)base name:(nullable NSString*)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a Boolean value that indicates whether a given object can be converted to NBT data.
  *
- * Valid objects are: NSDictionary, NSArray, NSString, NSData, NBTIntArray, NBTByte, NBTShort, NBTInt, NBTLong, NBTFloat, NBTDouble
+ * Valid objects are: NSDictionary, NSArray, NSString, NSData, NBTIntArray, NBTLongArray, NBTByte, NBTShort, NBTInt, NBTLong, NBTFloat, NBTDouble
  *
  * @param obj Object to check
- * @return YES if obj can be converted to JSON data, otherwise NO.
+ * @return YES if obj can be converted to NBT data, otherwise NO.
  */
 + (BOOL)isValidNBTObject:(id)obj;
 
+/**
+* Returns the Obj-C class used for the given NBTType
+*
+* @param type NBT tag type
+* @returns Corresponding class, or nil if type is invalid.
+*/
++ (NBTType)NBTTypeForObject:(nullable id)obj;
+
+/**
+ * Returns the Obj-C class used for the given NBTType.
+ *
+ * @param type NBT tag type
+ * @returns Corresponding class, or nil if type is invalid.
+ */
++ (nullable Class)classForNBTType:(NBTType)type;
+
+/**
+ Returns the name of the given NBTType.
+ *
+ * @param type NBT tag type
+ * @returns Type name
+ */
++ (nullable NSString*)nameOfNBTType:(NBTType)type;
+
 @end
+
+@interface NSArray (NBTListType)
+/** The list type when the array was read from NBT, otherwise NBTTypeInvaild */
+@property (nonatomic, readonly) NBTType nbtListType;
+@end
+
+NS_ASSUME_NONNULL_END
