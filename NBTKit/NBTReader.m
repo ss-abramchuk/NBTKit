@@ -295,6 +295,20 @@
     return intArray;
 }
 
+- (NBTIntArray*)readVarIntArray
+{
+    int32_t length = [self readVarInt];
+    
+    NBTIntArray *intArray = [NBTIntArray intArrayWithCount:length];
+    int32_t *values = intArray.values;
+    
+    for (int32_t i = 0; i < length; i++) {
+        *values++ = [self readVarInt];
+    }
+    
+    return intArray;
+}
+
 - (NBTLongArray*)readLongArray
 {
     int32_t len = [self readInt];
