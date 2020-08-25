@@ -62,9 +62,9 @@
     } else if (type == NBTTypeShort) {
         return NBTShort([self readShort]);
     } else if (type == NBTTypeInt) {
-        return NBTInt([self readInt]);
+        return NBTInt(self.varInteger ? [self readVarInt] : [self readInt]);
     } else if (type == NBTTypeLong) {
-        return NBTLong([self readLong]);
+        return NBTLong(self.varInteger ? [self readVarLong] : [self readLong]);
     } else if (type == NBTTypeFloat) {
         return NBTFloat([self readFloat]);
     } else if (type == NBTTypeDouble) {
@@ -72,13 +72,13 @@
     } else if (type == NBTTypeByteArray) {
         return [self readByteArray];
     } else if (type == NBTTypeString) {
-        return [self readString];
+        return self.varInteger ? [self readVarString] : [self readString];
     } else if (type == NBTTypeList) {
         return [self readList];
     } else if (type == NBTTypeCompound) {
         return [self readCompound];
     } else if (type == NBTTypeIntArray) {
-        return [self readIntArray];
+        return self.varInteger ? [self readVarIntArray] : [self readIntArray];
     } else if (type == NBTTypeLongArray) {
         return [self readLongArray];
     }
