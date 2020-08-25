@@ -118,9 +118,33 @@
 
 - (int32_t)readInt
 {
+    if (self.varInteger) { return [self readVarInt]; }
+    
     uint8_t buf[4];
     if ([stream read:buf maxLength:sizeof buf] != sizeof buf) [self readError];
     return _littleEndian ? OSReadLittleInt32(buf, 0) : OSReadBigInt32(buf, 0);
+}
+
+- (int32_t)readVarInt
+{
+    uint32_t result = 0;
+    
+    uint8_t bytesMax = 5;
+    uint8_t bytesRead = 0;
+    
+    uint8_t byte = 0;
+    
+    do {
+        if ((bytesRead > bytesMax) || [stream read:&byte maxLength:sizeof byte] < 0) {
+            [self readError];
+        }
+        
+        result |= (uint32_t)(byte & 0x7F) << bytesRead * 7;
+        
+        bytesRead++;
+    } while ((byte & 0x80) == 0x80);
+    
+    return (int32_t)(result >> 1) ^ -(int32_t)(result & 1);
 }
 
 - (int64_t)readLong
