@@ -118,14 +118,18 @@
 
 - (int32_t)readInt
 {
-    if (self.varInteger) { return [self readVarInt]; }
-    
     uint8_t buf[4];
     if ([stream read:buf maxLength:sizeof buf] != sizeof buf) [self readError];
     return _littleEndian ? OSReadLittleInt32(buf, 0) : OSReadBigInt32(buf, 0);
 }
 
 - (int32_t)readVarInt
+{
+    uint32_t result = [self readVarUInt];
+    return (int32_t)(result >> 1) ^ -(int32_t)(result & 1);
+}
+
+- (uint32_t)readVarUInt
 {
     uint32_t result = 0;
     
@@ -144,7 +148,7 @@
         bytesRead++;
     } while ((byte & 0x80) == 0x80);
     
-    return (int32_t)(result >> 1) ^ -(int32_t)(result & 1);
+    return result;
 }
 
 - (int64_t)readLong
@@ -152,6 +156,34 @@
     uint8_t buf[8];
     if ([stream read:buf maxLength:sizeof buf] != sizeof buf) [self readError];
     return _littleEndian ? OSReadLittleInt64(buf, 0) : OSReadBigInt64(buf, 0);
+}
+
+- (int64_t)readVarLong
+{
+    uint64_t result = [self readVarULong];
+    return (int64_t)(result >> 1) ^ -(int64_t)(result & 1);
+}
+
+- (uint64_t)readVarULong
+{
+    uint64_t result = 0;
+    
+    char bytesMax = 10;
+    char bytesRead = 0;
+    
+    uint8_t byte = 0;
+    
+    do {
+        if ((bytesRead > bytesMax) || [stream read:&byte maxLength:sizeof byte] < 0) {
+            [self readError];
+        }
+        
+        result |= (uint64_t)(byte & 0x7F) << bytesRead * 7;
+        
+        bytesRead++;
+    } while ((byte & 0x80) == 0x80);
+    
+    return result;
 }
 
 - (float)readFloat
