@@ -222,7 +222,12 @@
     
     // data
     uint8_t *buf = malloc(len);
-    if ([stream read:buf maxLength:len] != len) [self readError];
+    if ([stream read:buf maxLength:len] != len) {
+        free(buf);
+        
+        [self readError];
+        return nil;
+    }
     
     return [[NSString alloc] initWithBytesNoCopy:buf length:len encoding:NSUTF8StringEncoding freeWhenDone:YES];
 }
@@ -236,7 +241,9 @@
     
     if ([stream read:buffer maxLength:length] != length) {
         free(buffer);
+        
         [self readError];
+        return nil;
     }
         
     return [[NSString alloc] initWithBytesNoCopy:buffer length:length encoding:NSUTF8StringEncoding freeWhenDone:YES];
