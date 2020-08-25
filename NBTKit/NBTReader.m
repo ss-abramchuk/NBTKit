@@ -48,7 +48,7 @@
     if (tag == NBTTypeEnd) return [NSNull null];
     
     // read name
-    NSString *tagName = [self readString];
+    NSString *tagName = self.varInteger ? [self readVarString] : [self readString];
     if (name) *name = tagName;
     
     // read payload
