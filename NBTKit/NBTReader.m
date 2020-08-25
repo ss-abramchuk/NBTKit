@@ -74,13 +74,13 @@
     } else if (type == NBTTypeString) {
         return self.varInteger ? [self readVarString] : [self readString];
     } else if (type == NBTTypeList) {
-        return [self readList];
+        return self.varInteger ? [self readVarList] : [self readList];
     } else if (type == NBTTypeCompound) {
         return [self readCompound];
     } else if (type == NBTTypeIntArray) {
         return self.varInteger ? [self readVarIntArray] : [self readIntArray];
     } else if (type == NBTTypeLongArray) {
-        return [self readLongArray];
+        return self.varInteger ? [self readVarLongArray] : [self readLongArray];
     }
     
     @throw [NSException exceptionWithName:@"NBTTypeException" reason:[NSString stringWithFormat:@"Don't know how to read tag of type %d", type] userInfo:@{@"tag": @(type)}];
@@ -268,6 +268,25 @@
     return list;
 }
 
+- (NSMutableArray*)readVarList
+{
+    // type
+    int8_t tag = [self readByte];
+    
+    // length
+    int32_t len = [self readVarInt];
+    if (len < 0) [self readError];
+    
+    // items
+    NSMutableArray *list = [NSMutableArray arrayWithCapacity:len];
+    while (len--) {
+        [list addObject:[self readTagOfType:tag]];
+    }
+    
+    list.nbtListType = tag;
+    return list;
+}
+
 - (NSMutableDictionary*)readCompound
 {
     NSMutableDictionary *compound = [NSMutableDictionary new];
@@ -317,6 +336,19 @@
     int64_t *values = longArray.values;
     while (len--) {
         *values++ = [self readLong];
+    }
+    
+    return longArray;
+}
+
+- (NBTLongArray*)readVarLongArray
+{
+    int32_t len = [self readVarInt];
+    if (len < 0) [self readError];
+    NBTLongArray *longArray = [NBTLongArray longArrayWithCount:len];
+    int64_t *values = longArray.values;
+    while (len--) {
+        *values++ = [self readVarLong];
     }
     
     return longArray;
