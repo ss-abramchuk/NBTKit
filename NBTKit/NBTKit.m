@@ -86,6 +86,7 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
         // read uncompressed NBT
         NBTReader *reader = [[NBTReader alloc] initWithStream:stream];
         reader.littleEndian = opt & NBTLittleEndian;
+        reader.varInteger = opt & NBTUseVarInteger;
         return [reader readRootTag:name error:error];
     }
 }
