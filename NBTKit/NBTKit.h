@@ -68,9 +68,9 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param opt A combination of NBTOptions or zero. Valid options for reading are NBTCompressed and NBTLittleEndian
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  *
- * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
+ * @return An object of any compatible type with the root tag, or nil if an error occurs.
  */
-+ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithData:(NSData *)data name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable id)NBTWithData:(NSData *)data name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a mutable dictionary with the root tag from given NBT file.
@@ -82,9 +82,9 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param opt A combination of NBTOptions or zero. Valid options for reading are NBTCompressed and NBTLittleEndian
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  *
- * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
+ * @return An object of any compatible type  with the root tag, or nil if an error occurs.
  */
-+ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithFile:(NSString *)path name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable id)NBTWithFile:(NSString *)path name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a mutable dictionary with the root tag from given NBT file.
@@ -96,9 +96,9 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param opt A combination of NBTOptions or zero. Valid options for reading are NBTCompressed and NBTLittleEndian
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  *
- * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
+ * @return An object of any compatible type  with the root tag, or nil if an error occurs.
  */
-+ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithStream:(NSInputStream *)stream name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable id)NBTWithStream:(NSInputStream *)stream name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns NBT data from a NSDictionary

@@ -16,7 +16,7 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
 
 @implementation NBTKit
 
-+ (NSMutableDictionary *)NBTWithData:(NSData *)data name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (id)NBTWithData:(NSData *)data name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     if (data == nil) return nil;
     NSInputStream *stream = [NSInputStream inputStreamWithData:data];
@@ -24,14 +24,14 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
     return [self NBTWithStream:stream name:name options:opt error:error];
 }
 
-+ (NSMutableDictionary *)NBTWithFile:(NSString *)path name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (id)NBTWithFile:(NSString *)path name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:path];
     [stream open];
     return [self NBTWithStream:stream name:name options:opt error:error];
 }
 
-+ (NSMutableDictionary *)NBTWithStream:(NSInputStream *)stream name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (id)NBTWithStream:(NSInputStream *)stream name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     if (opt & NBTCompressed) {
         // read whole stream (yes, it's inefficient)
