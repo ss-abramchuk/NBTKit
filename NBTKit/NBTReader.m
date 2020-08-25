@@ -227,6 +227,21 @@
     return [[NSString alloc] initWithBytesNoCopy:buf length:len encoding:NSUTF8StringEncoding freeWhenDone:YES];
 }
 
+- (NSString*)readVarString
+{
+    uint32_t length = [self readVarUInt];
+    if (length == 0) { return @""; }
+    
+    uint8_t *buffer = malloc(length);
+    
+    if ([stream read:buffer maxLength:length] != length) {
+        free(buffer);
+        [self readError];
+    }
+        
+    return [[NSString alloc] initWithBytesNoCopy:buffer length:length encoding:NSUTF8StringEncoding freeWhenDone:YES];
+}
+
 - (NSMutableArray*)readList
 {
     // type
