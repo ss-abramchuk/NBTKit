@@ -52,6 +52,8 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
     NBTCompressed =     1 << 1,
     /// Used for writing chunks within region files (combine this flag with NBTCompressed)
     NBTUseZlib =        1 << 2,
+    /// Read or write integer of variable length (optimization used by Minecraft)
+    NBTUseVarInteger =  1 << 3
 };
 
 @interface NBTKit : NSObject
