@@ -91,7 +91,7 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
     }
 }
 
-+ (NSData *)dataWithNBT:(NSDictionary*)root name:(NSString*)name options:(NBTOptions)opt error:(NSError **)error
++ (NSData *)dataWithNBT:(id)root name:(NSString*)name options:(NBTOptions)opt error:(NSError **)error
 {
     NSError *inError = nil;
     NSOutputStream *stream = [NSOutputStream outputStreamToMemory];
@@ -102,14 +102,14 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
     return [stream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
 }
 
-+ (NSInteger)writeNBT:(NSDictionary *)base name:(NSString *)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (NSInteger)writeNBT:(id)base name:(NSString *)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     NSOutputStream *stream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
     [stream open];
     return [self writeNBT:base name:name toStream:stream options:opt error:error];
 }
 
-+ (NSInteger)writeNBT:(NSDictionary *)root name:(NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (NSInteger)writeNBT:(id)root name:(NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     if (stream == nil) {
         if (error) *error = [NSError errorWithDomain:NBTKitErrorDomain code:NBTInvalidArgError userInfo:@{@"stream": stream}];

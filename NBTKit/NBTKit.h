@@ -109,7 +109,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return NSData object with the written data
  */
-+ (nullable NSData *)dataWithNBT:(NSDictionary*)base name:(nullable NSString*)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable NSData *)dataWithNBT:(id)base name:(nullable NSString*)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Writes NBT data to a stream
@@ -121,7 +121,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return Number of bytes written, 0 on failure
  */
-+ (NSInteger)writeNBT:(NSDictionary*)base name:(nullable NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError **)error;
++ (NSInteger)writeNBT:(id)base name:(nullable NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Writes NBT data to a file
@@ -133,7 +133,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return Number of bytes written, 0 on failure
  */
-+ (NSInteger)writeNBT:(NSDictionary*)base name:(nullable NSString*)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError **)error;
++ (NSInteger)writeNBT:(id)base name:(nullable NSString*)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a Boolean value that indicates whether a given object can be converted to NBT data.
