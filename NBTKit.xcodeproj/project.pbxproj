@@ -14,8 +14,6 @@
 		28353F13184A755B00C6A091 /* MCRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 28353F11184A755B00C6A091 /* MCRegion.m */; };
 		28B72B2C184E0297001AC8A5 /* NBTKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED82D118491A6F00B08280 /* NBTKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		28ED82D318491A6F00B08280 /* NBTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82D218491A6F00B08280 /* NBTKit.m */; };
-		28ED82DA18491A6F00B08280 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82D918491A6F00B08280 /* XCTest.framework */; };
-		28ED82DB18491A6F00B08280 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82C418491A6F00B08280 /* Cocoa.framework */; };
 		28ED82DE18491A6F00B08280 /* NBTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28ED82C118491A6F00B08280 /* NBTKit.framework */; };
 		28ED82E618491A6F00B08280 /* NBTKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82E518491A6F00B08280 /* NBTKitTests.m */; };
 		28ED830918491F6900B08280 /* NBTNumbers.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED830718491F6900B08280 /* NBTNumbers.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +33,14 @@
 		C942706F1FCEC96D00764F74 /* NBTKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82E518491A6F00B08280 /* NBTKitTests.m */; };
 		C94270711FCEC98900764F74 /* redstone-castlegate.schematic in Resources */ = {isa = PBXBuildFile; fileRef = C94270701FCEC98800764F74 /* redstone-castlegate.schematic */; };
 		C94270721FCEC98900764F74 /* redstone-castlegate.schematic in Resources */ = {isa = PBXBuildFile; fileRef = C94270701FCEC98800764F74 /* redstone-castlegate.schematic */; };
+		C976C09624F3EAAF007CE2EC /* NBTLongArray.m in Sources */ = {isa = PBXBuildFile; fileRef = C976C09324F3EAAF007CE2EC /* NBTLongArray.m */; };
+		C976C09724F3EAAF007CE2EC /* NBTLongArray.m in Sources */ = {isa = PBXBuildFile; fileRef = C976C09324F3EAAF007CE2EC /* NBTLongArray.m */; };
+		C976C09824F3EAAF007CE2EC /* NBTLongArray.h in Headers */ = {isa = PBXBuildFile; fileRef = C976C09424F3EAAF007CE2EC /* NBTLongArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C976C09924F3EAAF007CE2EC /* NBTLongArray.h in Headers */ = {isa = PBXBuildFile; fileRef = C976C09424F3EAAF007CE2EC /* NBTLongArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C976C09A24F3EAAF007CE2EC /* NSArray+NBTListType.m in Sources */ = {isa = PBXBuildFile; fileRef = C976C09524F3EAAF007CE2EC /* NSArray+NBTListType.m */; };
+		C976C09B24F3EAAF007CE2EC /* NSArray+NBTListType.m in Sources */ = {isa = PBXBuildFile; fileRef = C976C09524F3EAAF007CE2EC /* NSArray+NBTListType.m */; };
+		C976C09E24F3EF3C007CE2EC /* NBTKit+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED83131849337C00B08280 /* NBTKit+Private.h */; };
+		C976C09F24F3EF3D007CE2EC /* NBTKit+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED83131849337C00B08280 /* NBTKit+Private.h */; };
 		C9A81EB81FCECD0F0015741D /* NBTKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED82D118491A6F00B08280 /* NBTKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9A81EB91FCECD160015741D /* NBTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 28ED82D218491A6F00B08280 /* NBTKit.m */; };
 		C9A81EBA1FCECD190015741D /* NBTReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 28ED830F184930EB00B08280 /* NBTReader.h */; };
@@ -69,19 +75,13 @@
 /* Begin PBXFileReference section */
 		28353F031849DD9B00C6A091 /* NBTIntArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTIntArray.h; sourceTree = "<group>"; };
 		28353F041849DD9B00C6A091 /* NBTIntArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTIntArray.m; sourceTree = "<group>"; };
-		28353F07184A321700C6A091 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		28353F0E184A400500C6A091 /* bigtest.nbt */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigtest.nbt; sourceTree = "<group>"; };
 		28353F10184A755B00C6A091 /* MCRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCRegion.h; sourceTree = "<group>"; };
 		28353F11184A755B00C6A091 /* MCRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCRegion.m; sourceTree = "<group>"; };
 		28ED82C118491A6F00B08280 /* NBTKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NBTKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		28ED82C418491A6F00B08280 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		28ED82C718491A6F00B08280 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		28ED82C818491A6F00B08280 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		28ED82C918491A6F00B08280 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		28ED82D118491A6F00B08280 /* NBTKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBTKit.h; sourceTree = "<group>"; };
 		28ED82D218491A6F00B08280 /* NBTKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTKit.m; sourceTree = "<group>"; };
 		28ED82D818491A6F00B08280 /* NBTKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBTKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		28ED82D918491A6F00B08280 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		28ED82E518491A6F00B08280 /* NBTKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NBTKitTests.m; sourceTree = "<group>"; };
 		28ED830718491F6900B08280 /* NBTNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTNumbers.h; sourceTree = "<group>"; };
 		28ED830818491F6900B08280 /* NBTNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTNumbers.m; sourceTree = "<group>"; };
@@ -103,6 +103,9 @@
 		C94270571FCEC5AB00764F74 /* NBTKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBTKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C94270671FCEC86E00764F74 /* Umbrella-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Umbrella-Header.h"; path = "NBTKit/Framework/Umbrella-Header.h"; sourceTree = SOURCE_ROOT; };
 		C94270701FCEC98800764F74 /* redstone-castlegate.schematic */ = {isa = PBXFileReference; lastKnownFileType = file; path = "redstone-castlegate.schematic"; sourceTree = "<group>"; };
+		C976C09324F3EAAF007CE2EC /* NBTLongArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTLongArray.m; sourceTree = "<group>"; };
+		C976C09424F3EAAF007CE2EC /* NBTLongArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTLongArray.h; sourceTree = "<group>"; };
+		C976C09524F3EAAF007CE2EC /* NSArray+NBTListType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NBTListType.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,8 +121,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28ED82DE18491A6F00B08280 /* NBTKit.framework in Frameworks */,
-				28ED82DB18491A6F00B08280 /* Cocoa.framework in Frameworks */,
-				28ED82DA18491A6F00B08280 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,22 +167,8 @@
 		28ED82C318491A6F00B08280 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				28353F07184A321700C6A091 /* libz.dylib */,
-				28ED82C418491A6F00B08280 /* Cocoa.framework */,
-				28ED82D918491A6F00B08280 /* XCTest.framework */,
-				28ED82C618491A6F00B08280 /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		28ED82C618491A6F00B08280 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				28ED82C718491A6F00B08280 /* Foundation.framework */,
-				28ED82C818491A6F00B08280 /* CoreData.framework */,
-				28ED82C918491A6F00B08280 /* AppKit.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		28ED82CA18491A6F00B08280 /* NBTKit */ = {
@@ -198,8 +185,11 @@
 				28ED830818491F6900B08280 /* NBTNumbers.m */,
 				28353F031849DD9B00C6A091 /* NBTIntArray.h */,
 				28353F041849DD9B00C6A091 /* NBTIntArray.m */,
+				C976C09424F3EAAF007CE2EC /* NBTLongArray.h */,
+				C976C09324F3EAAF007CE2EC /* NBTLongArray.m */,
 				28353F10184A755B00C6A091 /* MCRegion.h */,
 				28353F11184A755B00C6A091 /* MCRegion.m */,
+				C976C09524F3EAAF007CE2EC /* NSArray+NBTListType.m */,
 				C94270661FCEC85500764F74 /* Framework */,
 			);
 			path = NBTKit;
@@ -269,6 +259,8 @@
 				C94270691FCEC86E00764F74 /* Umbrella-Header.h in Headers */,
 				28ED831818496ABB00B08280 /* NBTWriter.h in Headers */,
 				28ED8311184930EB00B08280 /* NBTReader.h in Headers */,
+				C976C09924F3EAAF007CE2EC /* NBTLongArray.h in Headers */,
+				C976C09F24F3EF3D007CE2EC /* NBTKit+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +275,8 @@
 				C9A81EB81FCECD0F0015741D /* NBTKit.h in Headers */,
 				C9A81EBC1FCECD200015741D /* NBTWriter.h in Headers */,
 				C94270681FCEC86E00764F74 /* Umbrella-Header.h in Headers */,
+				C976C09824F3EAAF007CE2EC /* NBTLongArray.h in Headers */,
+				C976C09E24F3EF3C007CE2EC /* NBTKit+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +383,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 28ED82B718491A6F00B08280;
@@ -450,8 +445,10 @@
 			files = (
 				28ED8312184930EB00B08280 /* NBTReader.m in Sources */,
 				28353F061849DD9B00C6A091 /* NBTIntArray.m in Sources */,
+				C976C09724F3EAAF007CE2EC /* NBTLongArray.m in Sources */,
 				28ED82D318491A6F00B08280 /* NBTKit.m in Sources */,
 				28ED830A18491F6900B08280 /* NBTNumbers.m in Sources */,
+				C976C09B24F3EAAF007CE2EC /* NSArray+NBTListType.m in Sources */,
 				28ED831918496ABB00B08280 /* NBTWriter.m in Sources */,
 				28353F13184A755B00C6A091 /* MCRegion.m in Sources */,
 			);
@@ -471,8 +468,10 @@
 			files = (
 				C9A81EB91FCECD160015741D /* NBTKit.m in Sources */,
 				C9A81EC11FCECD320015741D /* NBTIntArray.m in Sources */,
+				C976C09624F3EAAF007CE2EC /* NBTLongArray.m in Sources */,
 				C9A81EBB1FCECD1D0015741D /* NBTReader.m in Sources */,
 				C9A81EBD1FCECD220015741D /* NBTWriter.m in Sources */,
+				C976C09A24F3EAAF007CE2EC /* NSArray+NBTListType.m in Sources */,
 				C9A81EBF1FCECD2B0015741D /* NBTNumbers.m in Sources */,
 				C9A81EC31FCECD390015741D /* MCRegion.m in Sources */,
 			);
@@ -605,6 +604,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				LD_DYLIB_INSTALL_NAME = "@loader_path/../Frameworks/$(EXECUTABLE_PATH)";
+				MARKETING_VERSION = 1.2.0;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				WRAPPER_EXTENSION = framework;
@@ -618,6 +618,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				LD_DYLIB_INSTALL_NAME = "@loader_path/../Frameworks/$(EXECUTABLE_PATH)";
+				MARKETING_VERSION = 1.2.0;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				WRAPPER_EXTENSION = framework;
@@ -681,6 +682,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -709,6 +711,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

@@ -18,4 +18,5 @@ FOUNDATION_EXPORT const unsigned char NBTKitVersionString[];
 #import <NBTKit/NBTKit.h>
 #import <NBTKit/NBTNumbers.h>
 #import <NBTKit/NBTIntArray.h>
+#import <NBTKit/NBTLongArray.h>
 #import <NBTKit/MCRegion.h>

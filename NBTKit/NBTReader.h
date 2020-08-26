@@ -11,6 +11,7 @@
 @interface NBTReader : NSObject
 
 @property (nonatomic, assign) BOOL littleEndian;
+@property (nonatomic, assign) BOOL varInteger;
 
 - (instancetype)initWithStream:(NSInputStream *)stream;
 - (id)readRootTag:(NSString **)name error:(NSError **)error;
