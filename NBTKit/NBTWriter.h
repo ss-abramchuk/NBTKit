@@ -11,6 +11,7 @@
 @interface NBTWriter : NSObject
 
 @property (nonatomic, assign) BOOL littleEndian;
+@property (nonatomic, assign) BOOL varInteger;
 
 - (instancetype)initWithStream:(NSOutputStream *)stream;
 - (NSInteger)writeRootTag:(NSDictionary*)root withName:(NSString *)name error:(NSError **)error;
