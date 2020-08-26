@@ -162,6 +162,32 @@
     return 8;
 }
 
+- (NSInteger)writeVarLong:(int64_t)val {
+    uint64_t unsignedValue = (uint64_t)((val << 1) ^ (val >> (sizeof(int64_t) * 8 - 1)));
+    return [self writeVarULong:unsignedValue];
+}
+
+- (NSInteger)writeVarULong:(uint64_t)val {
+    NSInteger bytesWritten = 0;
+    
+    uint64_t value = val;
+    
+    while (value & 0xFFFFFFFFFFFFFF80) {
+        uint8_t byte = (uint8_t)((value & 0x7F) | 0x80);
+        if ([stream write:&byte maxLength:1] < 0) { [self writeError]; }
+
+        value >>= 7;
+        bytesWritten += 1;
+    }
+    
+    uint8_t remains = (uint8_t)value;
+    if ([stream write:&remains maxLength:1] < 0) { [self writeError]; }
+    
+    bytesWritten += 1;
+
+    return bytesWritten;
+}
+
 - (NSInteger)writeFloat:(float)val
 {
     return [self writeInt:*(int32_t*)&val];
