@@ -242,6 +242,25 @@
     return bw;
 }
 
+- (NSInteger)writeVarList:(NSArray*)list {
+    NSInteger bw = 0;
+    
+    NBTType tag = NBTTypeByte;
+    if (list.count) tag = [NBTKit NBTTypeForObject:list.firstObject];
+    
+    bw += [self writeByte:tag];
+    
+    int32_t length = (int32_t)[list count];
+    
+    bw += [self writeVarInt:length];
+    
+    for (id obj in list) {
+        bw += [self writeTag:obj ofType:tag];
+    }
+    
+    return bw;
+}
+
 - (NSInteger)writeCompound:(NSDictionary*)dict
 {
     NSInteger bw = 0;
