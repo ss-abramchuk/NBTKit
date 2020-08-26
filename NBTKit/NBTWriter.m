@@ -323,4 +323,20 @@
     return bw;
 }
 
+- (NSInteger)writeVarLongArray:(NBTLongArray*)array
+{
+    NSInteger bw = 0;
+    
+    // length
+    bw += [self writeVarInt:(int32_t)array.count];
+    
+    // values
+    int64_t *values = array.values;
+    for (NSUInteger i=0; i < array.count; i++) {
+        bw += [self writeVarLong:values[i]];
+    }
+    
+    return bw;
+}
+
 @end
