@@ -290,6 +290,23 @@
     return bw;
 }
 
+- (NSInteger)writeVarIntArray:(NBTIntArray*)array
+{
+    NSInteger bw = 0;
+    
+    // length
+    int32_t length = (int32_t)array.count;
+    bw += [self writeVarInt:length];
+    
+    // values
+    int32_t *values = array.values;
+    for (NSUInteger i=0; i < array.count; i++) {
+        bw += [self writeVarInt:values[i]];
+    }
+    
+    return bw;
+}
+
 - (NSInteger)writeLongArray:(NBTLongArray*)array
 {
     NSInteger bw = 0;
