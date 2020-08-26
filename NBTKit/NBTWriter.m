@@ -42,7 +42,7 @@
     // tag type
     bytes += [self writeByte:tag];
     // name
-    bytes += [self writeString:name];
+    bytes += self.varInteger ? [self writeVarString:name] : [self writeString:name];
     // payload
     bytes += [self writeTag:obj ofType:tag];
     
@@ -57,9 +57,9 @@
         case NBTTypeShort:
             return [self writeShort:[obj shortValue]];
         case NBTTypeInt:
-            return [self writeInt:[obj intValue]];
+            return self.varInteger ? [self writeVarInt:[obj intValue]] : [self writeInt:[obj intValue]];
         case NBTTypeLong:
-            return [self writeLong:[obj longLongValue]];
+            return self.varInteger ? [self writeVarLong:[obj longLongValue]] : [self writeLong:[obj longLongValue]];
         case NBTTypeFloat:
             return [self writeFloat:[obj floatValue]];
         case NBTTypeDouble:
@@ -67,13 +67,13 @@
         case NBTTypeByteArray:
             return [self writeByteArray:obj];
         case NBTTypeString:
-            return [self writeString:obj];
+            return self.varInteger ? [self writeVarString:obj] : [self writeString:obj];
         case NBTTypeIntArray:
-            return [self writeIntArray:obj];
+            return self.varInteger ? [self writeVarIntArray:obj] : [self writeIntArray:obj];
         case NBTTypeLongArray:
-            return [self writeLongArray:obj];
+            return self.varInteger ? [self writeVarLongArray:obj] : [self writeLongArray:obj];
         case NBTTypeList:
-            return [self writeList:obj];
+            return self.varInteger ? [self writeVarList:obj] : [self writeList:obj];
         case NBTTypeCompound:
             return [self writeCompound:obj];
         case NBTTypeEnd:
