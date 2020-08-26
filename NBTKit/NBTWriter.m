@@ -217,6 +217,18 @@
     return bw;
 }
 
+- (NSInteger)writeVarString:(NSString*)str {
+    NSInteger bw = 0;
+    
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    uint32_t length = [data length];
+    
+    bw += [self writeVarUInt:length];
+    bw += [self write:data];
+    
+    return bw;
+}
+
 - (NSInteger)writeList:(NSArray*)list
 {
     NBTType tag = NBTTypeByte;
