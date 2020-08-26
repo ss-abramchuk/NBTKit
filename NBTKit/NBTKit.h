@@ -52,6 +52,8 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
     NBTCompressed =     1 << 1,
     /// Used for writing chunks within region files (combine this flag with NBTCompressed)
     NBTUseZlib =        1 << 2,
+    /// Read or write integer of variable length (optimization used by Minecraft)
+    NBTUseVarInteger =  1 << 3
 };
 
 @interface NBTKit : NSObject
@@ -66,9 +68,9 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param opt A combination of NBTOptions or zero. Valid options for reading are NBTCompressed and NBTLittleEndian
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  *
- * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
+ * @return An object of any compatible type with the root tag, or nil if an error occurs.
  */
-+ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithData:(NSData *)data name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable id)NBTWithData:(NSData *)data name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a mutable dictionary with the root tag from given NBT file.
@@ -80,9 +82,9 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param opt A combination of NBTOptions or zero. Valid options for reading are NBTCompressed and NBTLittleEndian
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  *
- * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
+ * @return An object of any compatible type  with the root tag, or nil if an error occurs.
  */
-+ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithFile:(NSString *)path name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable id)NBTWithFile:(NSString *)path name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a mutable dictionary with the root tag from given NBT file.
@@ -94,9 +96,9 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param opt A combination of NBTOptions or zero. Valid options for reading are NBTCompressed and NBTLittleEndian
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  *
- * @return A NSMutableDictionary with the root tag, or nil if an error occurs.
+ * @return An object of any compatible type  with the root tag, or nil if an error occurs.
  */
-+ (nullable NSMutableDictionary<NSString*,NSObject*>*)NBTWithStream:(NSInputStream *)stream name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable id)NBTWithStream:(NSInputStream *)stream name:(NSString *_Nullable *_Nullable)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns NBT data from a NSDictionary
@@ -107,7 +109,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return NSData object with the written data
  */
-+ (nullable NSData *)dataWithNBT:(NSDictionary*)base name:(nullable NSString*)name options:(NBTOptions)opt error:(NSError **)error;
++ (nullable NSData *)dataWithNBT:(id)base name:(nullable NSString*)name options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Writes NBT data to a stream
@@ -119,7 +121,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return Number of bytes written, 0 on failure
  */
-+ (NSInteger)writeNBT:(NSDictionary*)base name:(nullable NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError **)error;
++ (NSInteger)writeNBT:(id)base name:(nullable NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Writes NBT data to a file
@@ -131,7 +133,7 @@ typedef NS_OPTIONS(NSUInteger, NBTOptions) {
  * @param error If an error occurs, upon return contains an NSError object that describes the problem.
  * @return Number of bytes written, 0 on failure
  */
-+ (NSInteger)writeNBT:(NSDictionary*)base name:(nullable NSString*)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError **)error;
++ (NSInteger)writeNBT:(id)base name:(nullable NSString*)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError **)error;
 
 /**
  * Returns a Boolean value that indicates whether a given object can be converted to NBT data.

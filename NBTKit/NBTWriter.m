@@ -42,7 +42,7 @@
     // tag type
     bytes += [self writeByte:tag];
     // name
-    bytes += [self writeString:name];
+    bytes += self.varInteger ? [self writeVarString:name] : [self writeString:name];
     // payload
     bytes += [self writeTag:obj ofType:tag];
     
@@ -57,9 +57,9 @@
         case NBTTypeShort:
             return [self writeShort:[obj shortValue]];
         case NBTTypeInt:
-            return [self writeInt:[obj intValue]];
+            return self.varInteger ? [self writeVarInt:[obj intValue]] : [self writeInt:[obj intValue]];
         case NBTTypeLong:
-            return [self writeLong:[obj longLongValue]];
+            return self.varInteger ? [self writeVarLong:[obj longLongValue]] : [self writeLong:[obj longLongValue]];
         case NBTTypeFloat:
             return [self writeFloat:[obj floatValue]];
         case NBTTypeDouble:
@@ -67,13 +67,13 @@
         case NBTTypeByteArray:
             return [self writeByteArray:obj];
         case NBTTypeString:
-            return [self writeString:obj];
+            return self.varInteger ? [self writeVarString:obj] : [self writeString:obj];
         case NBTTypeIntArray:
-            return [self writeIntArray:obj];
+            return self.varInteger ? [self writeVarIntArray:obj] : [self writeIntArray:obj];
         case NBTTypeLongArray:
-            return [self writeLongArray:obj];
+            return self.varInteger ? [self writeVarLongArray:obj] : [self writeLongArray:obj];
         case NBTTypeList:
-            return [self writeList:obj];
+            return self.varInteger ? [self writeVarList:obj] : [self writeList:obj];
         case NBTTypeCompound:
             return [self writeCompound:obj];
         case NBTTypeEnd:
@@ -128,12 +128,64 @@
     return 4;
 }
 
+- (NSInteger)writeVarInt:(int32_t)val {
+    uint32_t unsignedValue = (uint32_t)((val << 1) ^ (val >> (sizeof(int32_t) * 8 - 1)));
+    return [self writeVarUInt:unsignedValue];
+}
+
+- (NSInteger)writeVarUInt:(uint32_t)val {
+    NSInteger bytesWritten = 0;
+    
+    uint32_t value = val;
+    
+    while (value & 0xFFFFFF80) {
+        uint8_t byte = (uint8_t)((value & 0x7F) | 0x80);
+        if ([stream write:&byte maxLength:1] < 0) { [self writeError]; }
+
+        value >>= 7;
+        bytesWritten += 1;
+    }
+    
+    uint8_t remains = (uint8_t)value;
+    if ([stream write:&remains maxLength:1] < 0) { [self writeError]; }
+    
+    bytesWritten += 1;
+
+    return bytesWritten;
+}
+
 - (NSInteger)writeLong:(int64_t)val
 {
     uint8_t buf[8];
     _littleEndian ? OSWriteLittleInt64(buf, 0, val) : OSWriteBigInt64(buf, 0, val);
     if ([stream write:buf maxLength:sizeof buf] != 8) [self writeError];
     return 8;
+}
+
+- (NSInteger)writeVarLong:(int64_t)val {
+    uint64_t unsignedValue = (uint64_t)((val << 1) ^ (val >> (sizeof(int64_t) * 8 - 1)));
+    return [self writeVarULong:unsignedValue];
+}
+
+- (NSInteger)writeVarULong:(uint64_t)val {
+    NSInteger bytesWritten = 0;
+    
+    uint64_t value = val;
+    
+    while (value & 0xFFFFFFFFFFFFFF80) {
+        uint8_t byte = (uint8_t)((value & 0x7F) | 0x80);
+        if ([stream write:&byte maxLength:1] < 0) { [self writeError]; }
+
+        value >>= 7;
+        bytesWritten += 1;
+    }
+    
+    uint8_t remains = (uint8_t)value;
+    if ([stream write:&remains maxLength:1] < 0) { [self writeError]; }
+    
+    bytesWritten += 1;
+
+    return bytesWritten;
 }
 
 - (NSInteger)writeFloat:(float)val
@@ -165,6 +217,18 @@
     return bw;
 }
 
+- (NSInteger)writeVarString:(NSString*)str {
+    NSInteger bw = 0;
+    
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    uint32_t length = [data length];
+    
+    bw += [self writeVarUInt:length];
+    bw += [self write:data];
+    
+    return bw;
+}
+
 - (NSInteger)writeList:(NSArray*)list
 {
     NBTType tag = NBTTypeByte;
@@ -175,6 +239,25 @@
     for (id obj in list) {
         bw += [self writeTag:obj ofType:tag];
     }
+    return bw;
+}
+
+- (NSInteger)writeVarList:(NSArray*)list {
+    NSInteger bw = 0;
+    
+    NBTType tag = NBTTypeByte;
+    if (list.count) tag = [NBTKit NBTTypeForObject:list.firstObject];
+    
+    bw += [self writeByte:tag];
+    
+    int32_t length = (int32_t)[list count];
+    
+    bw += [self writeVarInt:length];
+    
+    for (id obj in list) {
+        bw += [self writeTag:obj ofType:tag];
+    }
+    
     return bw;
 }
 
@@ -207,6 +290,23 @@
     return bw;
 }
 
+- (NSInteger)writeVarIntArray:(NBTIntArray*)array
+{
+    NSInteger bw = 0;
+    
+    // length
+    int32_t length = (int32_t)array.count;
+    bw += [self writeVarInt:length];
+    
+    // values
+    int32_t *values = array.values;
+    for (NSUInteger i=0; i < array.count; i++) {
+        bw += [self writeVarInt:values[i]];
+    }
+    
+    return bw;
+}
+
 - (NSInteger)writeLongArray:(NBTLongArray*)array
 {
     NSInteger bw = 0;
@@ -218,6 +318,22 @@
     int64_t *values = array.values;
     for (NSUInteger i=0; i < array.count; i++) {
         bw += [self writeLong:values[i]];
+    }
+    
+    return bw;
+}
+
+- (NSInteger)writeVarLongArray:(NBTLongArray*)array
+{
+    NSInteger bw = 0;
+    
+    // length
+    bw += [self writeVarInt:(int32_t)array.count];
+    
+    // values
+    int64_t *values = array.values;
+    for (NSUInteger i=0; i < array.count; i++) {
+        bw += [self writeVarLong:values[i]];
     }
     
     return bw;

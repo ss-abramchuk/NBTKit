@@ -16,7 +16,7 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
 
 @implementation NBTKit
 
-+ (NSMutableDictionary *)NBTWithData:(NSData *)data name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (id)NBTWithData:(NSData *)data name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     if (data == nil) return nil;
     NSInputStream *stream = [NSInputStream inputStreamWithData:data];
@@ -24,14 +24,14 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
     return [self NBTWithStream:stream name:name options:opt error:error];
 }
 
-+ (NSMutableDictionary *)NBTWithFile:(NSString *)path name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (id)NBTWithFile:(NSString *)path name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:path];
     [stream open];
     return [self NBTWithStream:stream name:name options:opt error:error];
 }
 
-+ (NSMutableDictionary *)NBTWithStream:(NSInputStream *)stream name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (id)NBTWithStream:(NSInputStream *)stream name:(NSString *__autoreleasing *)name options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     if (opt & NBTCompressed) {
         // read whole stream (yes, it's inefficient)
@@ -86,11 +86,12 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
         // read uncompressed NBT
         NBTReader *reader = [[NBTReader alloc] initWithStream:stream];
         reader.littleEndian = opt & NBTLittleEndian;
+        reader.varInteger = opt & NBTUseVarInteger;
         return [reader readRootTag:name error:error];
     }
 }
 
-+ (NSData *)dataWithNBT:(NSDictionary*)root name:(NSString*)name options:(NBTOptions)opt error:(NSError **)error
++ (NSData *)dataWithNBT:(id)root name:(NSString*)name options:(NBTOptions)opt error:(NSError **)error
 {
     NSError *inError = nil;
     NSOutputStream *stream = [NSOutputStream outputStreamToMemory];
@@ -101,14 +102,14 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
     return [stream propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
 }
 
-+ (NSInteger)writeNBT:(NSDictionary *)base name:(NSString *)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (NSInteger)writeNBT:(id)base name:(NSString *)name toFile:(NSString *)path options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     NSOutputStream *stream = [NSOutputStream outputStreamToFileAtPath:path append:NO];
     [stream open];
     return [self writeNBT:base name:name toStream:stream options:opt error:error];
 }
 
-+ (NSInteger)writeNBT:(NSDictionary *)root name:(NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
++ (NSInteger)writeNBT:(id)root name:(NSString*)name toStream:(NSOutputStream *)stream options:(NBTOptions)opt error:(NSError *__autoreleasing *)error
 {
     if (stream == nil) {
         if (error) *error = [NSError errorWithDomain:NBTKitErrorDomain code:NBTInvalidArgError userInfo:@{@"stream": stream}];
@@ -160,6 +161,7 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
         // write NBT
         NBTWriter *writer = [[NBTWriter alloc] initWithStream:stream];
         writer.littleEndian = opt & NBTLittleEndian;
+        writer.varInteger = opt & NBTUseVarInteger;
         return [writer writeRootTag:root withName:name error:error];
     }
 }
