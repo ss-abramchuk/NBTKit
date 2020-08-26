@@ -161,6 +161,7 @@ NSErrorDomain const NBTKitErrorDomain = @"NBTKitErrorDomain";
         // write NBT
         NBTWriter *writer = [[NBTWriter alloc] initWithStream:stream];
         writer.littleEndian = opt & NBTLittleEndian;
+        writer.varInteger = opt & NBTUseVarInteger;
         return [writer writeRootTag:root withName:name error:error];
     }
 }
